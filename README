@@ -1,2 +1,29 @@
-Project 2
-Authors: Junli, Kan Xue
+Project 2 AirFlea
+By: Junli, Kan Xue
+
+
+Introduction:
+This is a Online Flea Market!
+Our website provides the platform for buyers and sellers who own/want goods to exchange information and make P2P deals.
+Out site bridges buyers and sellers through online posts, users upload post for goods, search for available goods, the range can be narrowed down to the surrounding of the user defined address.
+
+A normal user can:
+- register for new account
+- login as a regular user
+- browse active goods near by
+- search active goods
+- access detail information of a good
+- quick access to contact buyer/seller of a good (optional)
+- post goods for approval
+- close a post and provide a reason (unlike delete post)
+- see their account information
+- edit profile
+- change password
+
+
+An administrator can:
+- cannot register new account himself
+- login as administrator
+- approve user's posts
+- delete posts (active and closed)
+- send out email to all users (optional)
