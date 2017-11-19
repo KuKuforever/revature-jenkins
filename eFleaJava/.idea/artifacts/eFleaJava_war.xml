@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="eFleaJava:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="eFleaJava.war">
+      <element id="artifact" artifact-name="eFleaJava:war exploded" />
+    </root>
+  </artifact>
+</component>
