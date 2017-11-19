@@ -10,12 +10,15 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {AppRouting} from './app-routing';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BuyStuffComponent } from './buy-stuff/buy-stuff.component';
 import { SellStuffComponent } from './sell-stuff/sell-stuff.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PostHistoryComponent } from './post-history/post-history.component';
+import { UpdateInfoComponent } from './update-info/update-info.component';
+import { NewBuyPostComponent } from './new-buy-post/new-buy-post.component';
+import { NewSellPostComponent } from './new-sell-post/new-sell-post.component';
 
 
 
@@ -32,13 +35,17 @@ import { PostHistoryComponent } from './post-history/post-history.component';
     BuyStuffComponent,
     SellStuffComponent,
     ProfileComponent,
-    PostHistoryComponent
+    PostHistoryComponent,
+    UpdateInfoComponent,
+    NewBuyPostComponent,
+    NewSellPostComponent
   ],
   imports: [
     BrowserModule,
     AppRouting,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,58 +1,36 @@
 <div class="container-fluid">
-  <section class="container">
-    <div class="container-page">
-      <div class="col-md-6">
-        <h3 class="dark-grey">Registration</h3>
+  <div class="container">
+      <div class="col-md-9 col-lg-offset-2">
+        <h3 class="dark-grey" align="center">Registration</h3>
 
-        <div class="form-group col-lg-12">
-          <label>Username</label>
-          <input type="" name="" class="form-control" id="" value="">
-        </div>
+        <form class="form-group" [formGroup]="form" novalidate>
+          <div class="form-group col-md-6 col-lg-offset-3">
+              <label>Nickname</label>
+              <input type="text" formControlName="nickName" class="form-control" >
+              <div class="alert" align="center" *ngIf="!form.controls['nickName'].valid && form.controls['nickName'].touched"
+                   style="background: lightcyan ">This is required</div>
+          </div>
 
-        <div class="form-group col-lg-6">
-          <label>Password</label>
-          <input type="password" name="" class="form-control" id="" value="">
-        </div>
 
-        <div class="form-group col-lg-6">
-          <label>Repeat Password</label>
-          <input type="password" name="" class="form-control" id="" value="">
-        </div>
+          <div class="form-group col-lg-6 col-lg-offset-3">
+            <label>Password</label>
+            <input type="password" formControlName="password"  class="form-control" >
+            <div class="alert" align="center" *ngIf="!form.controls['password'].valid && form.controls['password'].touched"
+                 style="background: lightcyan ">Password need to be minimum of 8 characters</div>
+          </div>
 
-        <div class="form-group col-lg-6">
-          <label>Email Address</label>
-          <input type="" name="" class="form-control" id="" value="">
-        </div>
+          <div class="form-group col-lg-6 col-lg-offset-3">
+            <label>Email Address</label>
+            <input type="email" formControlName="email" class="form-control" email="true">
+            <div class="alert" align="center" *ngIf="!form.controls['email'].valid && form.controls['email'].touched"
+                 style="background: lightcyan ">This has to be an valid email address</div>
+            <a align="right" (click)="login()" >Already have an account? Click here to login </a>
+            <div class="container">
+              <input type="submit" class="btn btn-primary col-lg-offset-3" (click)="register()" [disabled]="!form.valid" value="Register">
+            </div>
+          </div>
 
-        <div class="form-group col-lg-6">
-          <label>Repeat Email Address</label>
-          <input type="" name="" class="form-control" id="" value="">
-        </div>
-        <br>
-        <a align="right" (click)="login()" >Already have an account? Click here to login </a>
-      </div>
-
-      <div class="col-md-6">
-        <h3 class="dark-grey">Terms and Conditions</h3>
-        <p>
-          By clicking on "Register" you agree to The Company's' Terms and Conditions
-        </p>
-        <p>
-          Do not blame author if this is broken.
-        </p>
-        <p>
-          Absolutely NO security for user info is provided.
-        </p>
-        <p>
-          No emailing admin for anything.
-        </p>
-        <p>
-          Have Fun!
-        </p>
-        <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
-        <br> <br>
-
-      </div>
-    </div>
-  </section>
+        </form>
+     </div>
+  </div>
 </div>

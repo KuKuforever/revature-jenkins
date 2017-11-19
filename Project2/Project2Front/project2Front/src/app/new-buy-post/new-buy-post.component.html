@@ -1,0 +1,60 @@
+<app-nav-bar></app-nav-bar>
+
+<h4 align="center">I want to buy</h4>
+<legend class="col-lg-12" ></legend>
+
+<div class="container">
+  <div class="row">
+    <form role="form" id="contact-form" class="contact-form">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group">
+            <input type="text" class="form-control" name="title" autocomplete="off" id="title" placeholder="Title">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" class="form-control" name="city" autocomplete="off" placeholder="Street">
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <input type="text" class="form-control" name="city" autocomplete="off" placeholder="City">
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <div class="form-group">
+            <input type="text" class="form-control" name="state" autocomplete="off" placeholder="State">
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <input type="text" class="form-control" name="zipCode" autocomplete="off" placeholder="Zip Code">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            Add picture to your post:  <input type="file" class="form-control" name="myImage" accept="image/*" multiple placeholder="Select the image you want to upload">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <textarea class="form-control textarea" rows="5" name="Message" id="Message" placeholder="Product Description"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn main-btn pull-right" (click)="post()">Post</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

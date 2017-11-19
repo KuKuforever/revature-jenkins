@@ -7,6 +7,9 @@ import {ProfileComponent} from './profile/profile.component';
 import {PostHistoryComponent} from './post-history/post-history.component';
 import {BuyStuffComponent} from './buy-stuff/buy-stuff.component';
 import {SellStuffComponent} from './sell-stuff/sell-stuff.component';
+import {UpdateInfoComponent} from "./update-info/update-info.component";
+import {NewBuyPostComponent} from "./new-buy-post/new-buy-post.component";
+import {NewSellPostComponent} from "./new-sell-post/new-sell-post.component";
 
 const appRoutes: Routes = [
   {
@@ -37,6 +40,18 @@ const appRoutes: Routes = [
     path: 'sell',
     component: SellStuffComponent
   },
+  {
+    path: 'updateInfo',
+    component: UpdateInfoComponent
+  },
+  {
+    path: 'newBuyPost',
+    component: NewBuyPostComponent
+  },
+  {
+    path: 'newSellPost',
+    component: NewSellPostComponent
+  }
 ];
 
 
