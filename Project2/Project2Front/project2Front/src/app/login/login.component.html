@@ -7,15 +7,19 @@
           <h3 class="panel-title">User Login</h3>
         </div>
         <div class="panel-body">
-          <form accept-charset="UTF-8" role="form" (ngSubmit)="login()">
+          <form accept-charset="UTF-8" class="form-group" [formGroup]="form" (ngSubmit)="login()" novalidate>
             <fieldset>
               <div class="form-group">
-                <input class="form-control" placeholder="Email" name="username" type="text" required>
+                <input class="form-control"  formControlName="vemail" placeholder="Email" name="email" [(ngModel)]="email" type="email" email="true">
               </div>
+              <div class="alert" align="center" *ngIf="!form.controls['vemail'].valid && form.controls['vemail'].touched"
+                   style="background: lightcyan ">This has to be an valid email address</div>
               <div class="form-group">
-                <input class="form-control" placeholder="Password" name="password" type="password"  required>
+                <input class="form-control" formControlName="vpassword" placeholder="Password" name="password" [(ngModel)]="password" type="password">
               </div>
-              <input class="btn btn-primary btn-block" type="submit" value="Login">
+              <div class="alert" align="center" *ngIf="!form.controls['vpassword'].valid && form.controls['vpassword'].touched"
+                   style="background: lightcyan ">This is required </div>
+              <input class="btn btn-primary btn-block" type="submit" value="Login" [disabled]="!form.valid">
               <div  *ngIf = "display" class="text-danger" >{{err}}</div>
             </fieldset>
           </form>
