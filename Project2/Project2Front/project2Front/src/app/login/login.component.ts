@@ -12,13 +12,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  err = 'Invalid email or password, please try again.';
   form: FormGroup;
+  url = 'http://localhost:8080/login';
+  display = false;
 
   constructor(private http: HttpClient, private router: Router,
               private fb: FormBuilder) {
     this.form = fb.group({
-      vemail: [null, [Validators.required]],
-      vpassword: [null, [Validators.required]]
+      verifyEmail: [null, [Validators.required]],
+      verifyPassword: [null, [Validators.required]]
     });
   }
 
@@ -27,8 +30,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     let account = {'username': this.email, 'password': this.password};
-    this.http.post('', account, {withCredentials: true});
-    this.router.navigate([('home')]);
+    this.http.post(this.url, account, {withCredentials: false})
+      .subscribe((data) => {
+        this.router.navigate([('home')]);
+      }, (errror) => {
+        this.display = true;
+        console.error('incorrect email or pw');
+      });
   }
 
   register() {

@@ -6,23 +6,28 @@
         <form class="form-group" [formGroup]="form" novalidate>
           <div class="form-group col-md-6 col-lg-offset-3">
               <label>Nickname</label>
-              <input type="text" formControlName="nickName" class="form-control" >
-              <div class="alert" align="center" *ngIf="!form.controls['nickName'].valid && form.controls['nickName'].touched"
+              <input type="text" formControlName="verifyNickName" [(ngModel)]="nickname" name="nickname" class="form-control" >
+              <div class="alert" align="center" *ngIf="!form.controls['verifyNickName'].valid && form.controls['verifyNickName'].touched"
                    style="background: lightcyan ">This is required</div>
           </div>
 
 
           <div class="form-group col-lg-6 col-lg-offset-3">
             <label>Password</label>
-            <input type="password" formControlName="password"  class="form-control" >
-            <div class="alert" align="center" *ngIf="!form.controls['password'].valid && form.controls['password'].touched"
+            <input type="password" formControlName="verifyPassword"  class="form-control" [(ngModel)]="password" name="password">
+            <div class="alert" align="center" *ngIf="!form.controls['verifyPassword'].valid && form.controls['verifyPassword'].touched"
                  style="background: lightcyan ">Password need to be minimum of 8 characters</div>
           </div>
 
           <div class="form-group col-lg-6 col-lg-offset-3">
+            <label>Mobile Phone</label>
+            <input type="text" name="phone" placeholder="Optional" class="form-control" [(ngModel)]="phone" name="phone">
+          </div>
+
+          <div class="form-group col-lg-6 col-lg-offset-3">
             <label>Email Address</label>
-            <input type="email" formControlName="email" class="form-control" email="true">
-            <div class="alert" align="center" *ngIf="!form.controls['email'].valid && form.controls['email'].touched"
+            <input type="email" formControlName="verifyEmail" class="form-control" email="true" [(ngModel)]="email" name="email">
+            <div class="alert" align="center" *ngIf="!form.controls['verifyEmail'].valid && form.controls['verifyEmail'].touched"
                  style="background: lightcyan ">This has to be an valid email address</div>
             <a align="right" (click)="login()" >Already have an account? Click here to login </a>
             <div class="container">
