@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="hibernate.cfg.xml/Hibernate" uuid="bc55aa3c-5eeb-4281-98ec-0a7f802a5f58">
+      <database-info product="Oracle" version="Oracle Database 11g Release 11.2.0.4.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
+        <extra-name-characters>$#</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <user-name>junli</user-name>
+      <introspection-schemas>*:JUNLI</introspection-schemas>
+    </data-source>
+  </component>
+</project>
