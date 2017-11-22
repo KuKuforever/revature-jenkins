@@ -19,6 +19,7 @@ import { PostHistoryComponent } from './post-history/post-history.component';
 import { UpdateInfoComponent } from './update-info/update-info.component';
 import { NewBuyPostComponent } from './new-buy-post/new-buy-post.component';
 import { NewSellPostComponent } from './new-sell-post/new-sell-post.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 
 
@@ -38,7 +39,8 @@ import { NewSellPostComponent } from './new-sell-post/new-sell-post.component';
     PostHistoryComponent,
     UpdateInfoComponent,
     NewBuyPostComponent,
-    NewSellPostComponent
+    NewSellPostComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
