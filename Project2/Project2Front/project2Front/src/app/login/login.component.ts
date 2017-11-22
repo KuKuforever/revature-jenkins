@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
   err = 'Invalid email or password, please try again.';
   form: FormGroup;
-  url = 'http://localhost:8080/login';
+  url = 'http://localhost:8085/account/login';
   display = false;
 
   constructor(private http: HttpClient, private router: Router,
