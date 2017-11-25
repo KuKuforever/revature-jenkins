@@ -19,5 +19,18 @@ public class AccountService {
 
     public List<Account> getAll() {return accountDao.findAll();}
 
+    public boolean login(String email, String password) throws Exception {
+        boolean result = false;
 
+        if((email == null) || (password == null)) {
+            throw new Exception("Invalid entries");
+        }
+
+        Account account = accountDao.findByEmail(email);
+
+        if(email.equals(account.getEmail()) && password.equals(account.getPassword())){
+            result = true;
+        }
+        return result;
+    }
 }

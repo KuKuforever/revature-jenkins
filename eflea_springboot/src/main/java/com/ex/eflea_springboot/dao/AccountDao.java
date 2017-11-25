@@ -8,4 +8,5 @@ import java.io.Serializable;
 
 @Repository
 public interface AccountDao extends JpaRepository<Account, Serializable> {
+    Account findByEmail(Serializable String);
 }
