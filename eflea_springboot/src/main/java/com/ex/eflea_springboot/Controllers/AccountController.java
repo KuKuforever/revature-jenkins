@@ -28,6 +28,15 @@ public class AccountController {
         public LoginAccount() {}
     }
 
+    public static class NewUser {
+        public String email;
+        public String password;
+        public String phone;
+        public String username;
+
+        public NewUser() {}
+    }
+
     @Autowired
     public AccountController(AccountService accountService){
         this.accountService = accountService;
@@ -63,10 +72,25 @@ public class AccountController {
         }
     }
 
+
     @RequestMapping(path= "/verify", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Account verify(HttpServletRequest req) {
         return (Account)req.getSession().getAttribute("account");
+    }
+
+
+    @RequestMapping(path = "/register", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
+    public void register(@RequestBody NewUser user, HttpServletResponse resp) {
+        try{
+            accountService.register(user.email, user.password, user.username, user.phone);
+            resp.setStatus(HttpServletResponse.SC_OK);
+
+        } catch(Exception e) {
+            logger.error("error, " + e.getMessage());
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 }

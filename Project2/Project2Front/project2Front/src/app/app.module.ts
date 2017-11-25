@@ -20,6 +20,7 @@ import { UpdateInfoComponent } from './update-info/update-info.component';
 import { NewBuyPostComponent } from './new-buy-post/new-buy-post.component';
 import { NewSellPostComponent } from './new-sell-post/new-sell-post.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { SuccessMessageComponent } from './success-message/success-message.component';
 
 
 
@@ -40,7 +41,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     UpdateInfoComponent,
     NewBuyPostComponent,
     NewSellPostComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    SuccessMessageComponent
   ],
   imports: [
     BrowserModule,

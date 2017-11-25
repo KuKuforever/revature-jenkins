@@ -10,6 +10,7 @@ import {SellStuffComponent} from './sell-stuff/sell-stuff.component';
 import {UpdateInfoComponent} from "./update-info/update-info.component";
 import {NewBuyPostComponent} from "./new-buy-post/new-buy-post.component";
 import {NewSellPostComponent} from "./new-sell-post/new-sell-post.component";
+import {SuccessMessageComponent} from "./success-message/success-message.component";
 
 const appRoutes: Routes = [
   {
@@ -51,6 +52,10 @@ const appRoutes: Routes = [
   {
     path: 'newSellPost',
     component: NewSellPostComponent
+  },
+  {
+    path: 'success',
+    component: SuccessMessageComponent
   }
 ];
 
