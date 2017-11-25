@@ -29,13 +29,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let account = {'username': this.email, 'password': this.password};
-    this.http.post(this.url, account, {withCredentials: false})
+    let account = {'email': this.email, 'password': this.password};
+    this.http.post(this.url, account, {responseType: 'text', withCredentials: true})
       .subscribe((data) => {
         this.router.navigate([('home')]);
-      }, (errror) => {
+      }, (error) => {
         this.display = true;
-        console.error('incorrect email or pw');
+        console.error('incorrect email or pw' + error);
       });
   }
 
