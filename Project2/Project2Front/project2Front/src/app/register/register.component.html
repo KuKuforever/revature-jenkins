@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div class="container">
-      <div class="col-md-9 col-lg-offset-2">
+      <div class="col-md-9 col-lg-offset-1">
         <h3 class="dark-grey" align="center">Registration</h3>
 
-        <form class="form-group" [formGroup]="form" novalidate>
+        <form class="form-group" [formGroup]="form" (ngSubmit)="register()" novalidate>
           <div class="form-group col-md-6 col-lg-offset-3">
               <label>Nickname</label>
-              <input type="text" formControlName="verifyNickName" [(ngModel)]="nickname" name="nickname" class="form-control" >
+              <input type="text" formControlName="verifyNickName" [(ngModel)]="username" name="username" class="form-control" >
               <div class="alert" align="center" *ngIf="!form.controls['verifyNickName'].valid && form.controls['verifyNickName'].touched"
                    style="background: lightcyan ">This is required</div>
           </div>
@@ -19,9 +19,10 @@
                  style="background: lightcyan ">Password need to be minimum of 8 characters</div>
           </div>
 
+
           <div class="form-group col-lg-6 col-lg-offset-3">
             <label>Mobile Phone</label>
-            <input type="text" name="phone" placeholder="Optional" class="form-control" [(ngModel)]="phone" name="phone">
+            <input type="text" formControlName="verifyPhone" name="phone" placeholder="Optional" class="form-control" [(ngModel)]="phone" name="phone">
           </div>
 
           <div class="form-group col-lg-6 col-lg-offset-3">
@@ -31,9 +32,12 @@
                  style="background: lightcyan ">This has to be an valid email address</div>
             <a align="right" (click)="login()" >Already have an account? Click here to login </a>
             <div class="container">
-              <input type="submit" class="btn btn-primary col-lg-offset-3" (click)="register()" [disabled]="!form.valid" value="Register">
+              <input type="submit" class="btn btn-primary col-lg-offset-3" [disabled]="!form.valid" value="Register">
+              <div  *ngIf = "display" class="text-danger" >{{err}}</div>
             </div>
           </div>
+
+
 
         </form>
      </div>
