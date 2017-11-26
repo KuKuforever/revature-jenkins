@@ -1,6 +1,7 @@
 package com.ex.eflea_springboot.Controllers;
 
 
+import com.ex.eflea_springboot.dao.AccountDao;
 import com.ex.eflea_springboot.model.Account;
 import com.ex.eflea_springboot.services.AccountService;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/account")
 public class AccountController {
@@ -28,13 +29,13 @@ public class AccountController {
         public LoginAccount() {}
     }
 
-    public static class NewUser {
+    public static class User {
         public String email;
         public String password;
         public String phone;
         public String username;
 
-        public NewUser() {}
+        public User() {}
     }
 
     @Autowired
@@ -59,9 +60,9 @@ public class AccountController {
     public void login(@RequestBody LoginAccount login, HttpServletRequest req, HttpServletResponse resp) {
 
         try {
-            boolean logged = accountService.login(login.email, login.password);
-            if(logged){
-                req.getSession().setAttribute("account", login);
+            Account logged = accountService.login(login.email, login.password);
+            if(logged != null){
+                req.getSession().setAttribute("account", logged);
                 resp.setStatus(HttpServletResponse.SC_OK);
             } else{
                 resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -73,8 +74,7 @@ public class AccountController {
     }
 
 
-    @RequestMapping(path= "/verify", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path= "/verify", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Account verify(HttpServletRequest req) {
         return (Account)req.getSession().getAttribute("account");
@@ -83,7 +83,7 @@ public class AccountController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
-    public void register(@RequestBody NewUser user, HttpServletResponse resp) {
+    public void register(@RequestBody User user, HttpServletResponse resp) {
         try{
             accountService.register(user.email, user.password, user.username, user.phone);
             resp.setStatus(HttpServletResponse.SC_OK);
@@ -92,5 +92,23 @@ public class AccountController {
             logger.error("error, " + e.getMessage());
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(path = "/update", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
+    public void update(@RequestBody User user, HttpServletResponse resp) {
+        try{
+            logger.error(user.email + user.phone + user.username);
+            accountService.updateProfile(user.email, user.phone, user.username);
+        } catch(Exception e) {
+            logger.error("update error, " + e.getMessage());
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(path = "/logout")
+    public void logout(HttpServletRequest req, HttpServletResponse resp) {
+        resp.setStatus(HttpServletResponse.SC_OK);
+        req.getSession().invalidate();
     }
 }

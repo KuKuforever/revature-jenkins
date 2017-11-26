@@ -12,7 +12,14 @@
 <div class="container col-md-10 pull-right">
   <table class="table table-striped">
     <tr>
-      <th>Address</th>
+      <th>Nickname</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    <tr *ngIf="user">
+      <th>{{user.username}}</th>
+      <th>{{user.email}}</th>
+      <th>{{user.phone}}</th>
     </tr>
   </table>
 </div>
