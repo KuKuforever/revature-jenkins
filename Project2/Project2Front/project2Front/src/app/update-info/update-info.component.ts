@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../users/user';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-update-info',
@@ -12,10 +12,12 @@ export class UpdateInfoComponent implements OnInit {
   user: User;
   url = 'http://localhost:8085/account/verify';
   updateUrl = 'http://localhost:8085/account/update';
-  nickname = 'defaultToMike';
-  phone = '123-456-789';
+  nickname;
+  phone;
   constructor(private router: Router,
-              private http: HttpClient) { }
+              private http: HttpClient) {
+    //this.getProfile();
+  }
 
   ngOnInit() {
     this.getProfile();
