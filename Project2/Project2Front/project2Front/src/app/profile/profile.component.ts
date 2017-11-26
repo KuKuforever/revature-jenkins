@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import {User} from '../users/user';
+import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../models/user';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
   url = 'http://localhost:8085/account/verify';
 
   constructor(private router: Router,
-              private http: HttpClient) { }
+              private http: HttpClient) {
+    this.getProfile();
+  }
 
   ngOnInit() {
     this.getProfile();
@@ -26,6 +28,7 @@ export class ProfileComponent implements OnInit {
   getProfile() {
     this.http.get<User>(this.url, {withCredentials: true})
       .subscribe((data) => {
+        console.log(data);
         this.user = data;
       }, (err) => {
         this.router.navigate([('')]);

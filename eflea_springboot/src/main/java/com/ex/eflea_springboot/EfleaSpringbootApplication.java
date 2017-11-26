@@ -14,7 +14,7 @@ public class EfleaSpringbootApplication {
 		SpringApplication.run(EfleaSpringbootApplication.class, args);
 	}
 
-/*	@Bean
+	@Bean
 	public CommandLineRunner demo(AccountDao repo) {
 		return (args) -> {
 			// save a couple of customers
@@ -23,5 +23,5 @@ public class EfleaSpringbootApplication {
 			}
 
 		};
-	}*/
+	}
 }

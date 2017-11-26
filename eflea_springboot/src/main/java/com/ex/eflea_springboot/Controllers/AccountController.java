@@ -38,6 +38,15 @@ public class AccountController {
         public User() {}
     }
 
+    public static class Session {
+        public String email;
+        public String phone;
+        public String username;
+        public int title;
+
+        public Session() {}
+    }
+
     @Autowired
     public AccountController(AccountService accountService){
         this.accountService = accountService;
@@ -62,7 +71,12 @@ public class AccountController {
         try {
             Account logged = accountService.login(login.email, login.password);
             if(logged != null){
-                req.getSession().setAttribute("account", logged);
+                Session account = new Session();
+                account.email = logged.getEmail();
+                account.title = logged.getTitleId();
+                account.phone = logged.getPhone();
+                account.username = logged.getUsername();
+                req.getSession().setAttribute("account", account);
                 resp.setStatus(HttpServletResponse.SC_OK);
             } else{
                 resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -76,8 +90,8 @@ public class AccountController {
 
     @RequestMapping(path= "/verify", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Account verify(HttpServletRequest req) {
-        return (Account)req.getSession().getAttribute("account");
+    public Session verify(HttpServletRequest req) {
+        return (Session)req.getSession().getAttribute("account");
     }
 
 
@@ -96,10 +110,15 @@ public class AccountController {
 
     @RequestMapping(path = "/update", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
-    public void update(@RequestBody User user, HttpServletResponse resp) {
+    public void update(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
         try{
-            logger.error(user.email + user.phone + user.username);
-            accountService.updateProfile(user.email, user.phone, user.username);
+            Account account = accountService.updateProfile(user.email, user.phone, user.username);
+            Session updated = new Session();
+            updated.username = account.getUsername();
+            updated.phone = account.getPhone();
+            updated.email = account.getEmail();
+            updated.title = account.getTitleId();
+            req.getSession().setAttribute("account", updated);
         } catch(Exception e) {
             logger.error("update error, " + e.getMessage());
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
