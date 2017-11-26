@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../users/user';
 
 @Component({
   selector: 'app-update-info',
@@ -7,13 +9,40 @@ import {Router} from '@angular/router';
   styleUrls: ['./update-info.component.css']
 })
 export class UpdateInfoComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  user: User;
+  url = 'http://localhost:8085/account/verify';
+  updateUrl = 'http://localhost:8085/account/update';
+  nickname = 'defaultToMike';
+  phone = '123-456-789';
+  constructor(private router: Router,
+              private http: HttpClient) { }
 
   ngOnInit() {
+    this.getProfile();
   }
 
   submit() {
+    this.user.username = this.nickname;
+    this.user.phone = this.phone;
+    this.http.post(this.updateUrl, this.user, {responseType: 'text', withCredentials: true} )
+      .subscribe(() => {
+        this.router.navigate([('profile')]);
+      }, () => {
+        console.error('update failed');
+      });
+
+  }
+
+  cancel() {
     this.router.navigate([('profile')]);
+  }
+
+  getProfile() {
+    this.http.get<User>(this.url, {withCredentials: true})
+      .subscribe((data) => {
+        this.user = data;
+      }, (err) => {
+        this.router.navigate([('')]);
+      });
   }
 }

@@ -20,8 +20,8 @@ public class AccountService {
 
     public List<Account> getAll() {return accountDao.findAll();}
 
-    public boolean login(String email, String password) throws Exception {
-        boolean result = false;
+    public Account login(String email, String password) throws Exception {
+        Account user = null;
 
         if((email == null) || (password == null)) {
             throw new Exception("Invalid entries");
@@ -30,9 +30,9 @@ public class AccountService {
         Account account = accountDao.findByEmail(email);
 
         if(email.equals(account.getEmail()) && password.equals(account.getPassword())){
-            result = true;
+            user = account;
         }
-        return result;
+        return user;
     }
 
     public void register(String email, String password, String phone, String username) throws Exception {
@@ -48,5 +48,16 @@ public class AccountService {
         account.setTitleId(2);
         accountDao.save(account);
 
+    }
+
+    public void updateProfile(String email, String phone, String username) throws Exception {
+        if(email == null) {
+            throw new Exception("invalid data, can not update");
+        }
+
+        Account account = accountDao.findByEmail(email);
+        account.setUsername(username);
+        account.setPhone(phone);
+        accountDao.save(account);
     }
 }
