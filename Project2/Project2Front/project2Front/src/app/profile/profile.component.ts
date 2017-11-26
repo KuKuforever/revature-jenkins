@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import {ActivatedRoute, Router} from '@angular/router';
+=======
+import {Router} from '@angular/router';
+>>>>>>> Jun_Li
 import {User} from '../models/user';
 import {HttpClient} from '@angular/common/http';
 

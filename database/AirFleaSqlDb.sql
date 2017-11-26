@@ -120,6 +120,25 @@ INSERT INTO EFLEA_ACCOUNT(EMAIL, PASSWORD, USERNAME, TITLEID, CREATEDATE, PHONE)
     VALUES('kanxue@eflea.com', 'eflea', 'Admin-Kan',1, 
     CURRENT_TIMESTAMP, '1-333-333-3333');
 COMMIT;
+
+/* INSERT POST DATA */
+INSERT INTO EFLEA_POST(POSTID, POSTEMAIL, TITLE, STATUSID, TYPEID, CITY, STATE, COUNTRY, ZIP, DESCRIPTION)
+    VALUES(1,'baduser@eflea.com','Sale post 01', 2,1, 'Flushing','New York', 'United States','11355','description for sales post 1');
+COMMIT;
+
+INSERT INTO EFLEA_POST(POSTID, POSTEMAIL, TITLE, STATUSID, TYPEID, CITY, STATE, COUNTRY, ZIP, DESCRIPTION)
+    VALUES(2,'baduser@eflea.com','Want Post 01', 2,2, 'Bayside','New York', 'United States','11354','description for want post 1');
+COMMIT;
+
+
+/* INSERT IMAGE DATA */
+INSERT INTO EFLEA_IMAGE(IMAGEID, POSTID, URL)
+    VALUES(1, 1, 'https://i.imgur.com/ExNxqXb.jpg/');
+COMMIT;
+INSERT INTO EFLEA_IMAGE(IMAGEID, POSTID, URL)
+    VALUES(2, 2, 'https://i.imgur.com/MUP4EP0.jpg/');
+COMMIT;
+
     
     
     

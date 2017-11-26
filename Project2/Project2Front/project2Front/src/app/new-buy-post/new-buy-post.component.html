@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-1">
           <div class="form-group">
-            <input type="text" class="form-control" name="title" autocomplete="off" id="title" placeholder="Title">
+            <input type="text" class="form-control" name="title" autocomplete="off" id="title" placeholder="Title" [(ngModel)]="title">
           </div>
         </div>
 
@@ -21,19 +21,19 @@
 
         <div class="col-md-3 col-md-offset-1">
           <div class="form-group">
-            <input type="text" class="form-control" name="city" autocomplete="off" placeholder="City">
+            <input type="text" class="form-control" name="city" autocomplete="off" placeholder="City" [(ngModel)]="city">
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="form-group">
-            <input type="text" class="form-control" name="state" autocomplete="off" placeholder="State">
+            <input type="text" class="form-control" name="state" autocomplete="off" placeholder="State" [(ngModel)]="state">
           </div>
         </div>
 
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" class="form-control" name="zipCode" autocomplete="off" placeholder="Zip Code">
+            <input type="text" class="form-control" name="zipCode" autocomplete="off" placeholder="Zip Code" [ngModel)]="zip">
           </div>
         </div>
 
@@ -48,7 +48,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="form-group">
-            <textarea class="form-control textarea" rows="5" name="Message" id="Message" placeholder="Product Description"></textarea>
+            <textarea class="form-control textarea" rows="5" name="Message" id="Message" placeholder="Product Description" [(ngModel)]="description"></textarea>
           </div>
         </div>
       </div>
