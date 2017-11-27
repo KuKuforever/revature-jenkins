@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PostService} from '../post.service';
 
 @Component({
   selector: 'app-post-content',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-content.component.css']
 })
 export class PostContentComponent implements OnInit {
-
-  constructor() { }
+  id: number;
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.postService.postId.subscribe(newId => this.id = newId);
   }
 
 }

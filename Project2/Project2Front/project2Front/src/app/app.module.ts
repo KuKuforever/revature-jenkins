@@ -22,6 +22,8 @@ import { NewSellPostComponent } from './new-sell-post/new-sell-post.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { PostContentComponent } from './post-content/post-content.component';
+import { PendingPostComponent } from './pending-post/pending-post.component';
+import {PostService} from './post.service';
 
 
 
@@ -44,7 +46,8 @@ import { PostContentComponent } from './post-content/post-content.component';
     NewSellPostComponent,
     AdminPageComponent,
     SuccessMessageComponent,
-    PostContentComponent
+    PostContentComponent,
+    PendingPostComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { PostContentComponent } from './post-content/post-content.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

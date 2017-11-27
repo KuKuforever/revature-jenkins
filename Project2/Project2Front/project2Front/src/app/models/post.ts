@@ -1,6 +1,6 @@
 export class Post {
   title:  string;
-  email:  string;
+  postEmail:  string;
   statusId:   number;
   typeId: number;
   city: string;
@@ -8,4 +8,6 @@ export class Post {
   country:  string;
   zip:  string;
   description:  string;
+  postDate: string;
+  postId: string;
 }

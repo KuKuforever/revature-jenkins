@@ -2,6 +2,7 @@ package com.ex.eflea_springboot.Controllers;
 
 
 import com.ex.eflea_springboot.dao.AccountDao;
+import com.ex.eflea_springboot.helpers.Session;
 import com.ex.eflea_springboot.model.Account;
 import com.ex.eflea_springboot.services.AccountService;
 import org.slf4j.Logger;
@@ -36,15 +37,6 @@ public class AccountController {
         public String username;
 
         public User() {}
-    }
-
-    public static class Session {
-        public String email;
-        public String phone;
-        public String username;
-        public int title;
-
-        public Session() {}
     }
 
     @Autowired
