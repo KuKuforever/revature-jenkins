@@ -23,7 +23,7 @@ export class NewBuyPostComponent implements OnInit {
 
   ngOnInit() {
     this.getProfile();
-    this.postObj.email = this.user.email;
+    this.postObj.postEmail = this.user.email;
   }
 
   post() {

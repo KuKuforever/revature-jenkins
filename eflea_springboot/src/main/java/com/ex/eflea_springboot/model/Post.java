@@ -9,6 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name="EFLEA_POST")
 public class Post {
+    private String title;
     private long postId;
     private String postEmail;
     private Date postDate;
@@ -21,7 +22,7 @@ public class Post {
     private String description;
 
     @Id
-    @Column
+    @Column(name="POSTID")
     @GenericGenerator(name="postIdGen", strategy = "increment")
     @GeneratedValue(generator = "postIdGen")
     public long getPostId() {
@@ -32,7 +33,7 @@ public class Post {
         this.postId = postId;
     }
 
-    @Column
+    @Column(name="POSTEMAIL")
     public String getPostEmail() {
         return postEmail;
     }
@@ -41,7 +42,7 @@ public class Post {
         this.postEmail = postEmail;
     }
 
-    @Column
+    @Column(name="POSTDATE")
     public Date getPostDate() {
         return postDate;
     }
@@ -52,7 +53,7 @@ public class Post {
 
     /*@OneToOne
     @JoinColumn(name="STATUSID")*/
-    @Column
+    @Column(name="STATUSID")
     public int getStatusId() {
         return statusId;
     }
@@ -63,7 +64,7 @@ public class Post {
 
     /*@OneToOne
     @JoinColumn(name="TYPEID")*/
-    @Column
+    @Column(name="TYPEID")
     public int getTypeId() {
         return typeId;
     }
@@ -117,10 +118,21 @@ public class Post {
         this.description = description;
     }
 
+    @Column
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
     @Override
     public String toString() {
         return "Post{" +
-                "postId=" + postId +
+                "title='" + title + '\'' +
+                ", postId=" + postId +
                 ", postEmail='" + postEmail + '\'' +
                 ", postDate=" + postDate +
                 ", statusId=" + statusId +

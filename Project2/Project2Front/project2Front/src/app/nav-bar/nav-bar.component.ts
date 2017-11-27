@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {withIdentifier} from 'codelyzer/util/astQuery';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,12 +9,16 @@ import {withIdentifier} from 'codelyzer/util/astQuery';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  admin = false;
+  user: User;
   url = 'http://localhost:8085/account/logout';
+  verifyUrl = 'http://localhost:8085/account/verify';
 
   constructor(private router: Router,
               private http: HttpClient) { }
 
   ngOnInit() {
+    this.getProfile();
   }
 
   goHome() {
@@ -44,6 +48,25 @@ export class NavBarComponent implements OnInit {
         this.router.navigate([('')]);
       }, (err) => {
         console.error(err);
+      });
+  }
+
+  viewPendingPost() {
+    this.router.navigate([('pendingPost')]);
+  }
+
+  getProfile() {
+    this.http.get<User>(this.verifyUrl, {withCredentials: true})
+      .subscribe((data) => {
+        this.user = data;
+        console.log(this.user);
+        if (this.user.title === 1) {
+          this.admin = true;
+          console.log(this.admin);
+        }
+      }, (err) => {
+        console.error(err);
+        this.router.navigate([('')]);
       });
   }
 }

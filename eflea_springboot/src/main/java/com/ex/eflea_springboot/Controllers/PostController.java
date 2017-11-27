@@ -1,19 +1,22 @@
 package com.ex.eflea_springboot.Controllers;
 
+import com.ex.eflea_springboot.helpers.Session;
+import com.ex.eflea_springboot.model.Account;
+import com.ex.eflea_springboot.model.Post;
 import com.ex.eflea_springboot.services.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/post")
 public class PostController {
     private PostService postService;
@@ -24,9 +27,11 @@ public class PostController {
     }
 
 
-    @RequestMapping(path = "/new", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/postHistory", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public uploadNewPost(@ResponseBody , HttpServletResponse resp){
-
+    public List<Post> viewPost(HttpServletRequest req) {
+        Session account = (Session)req.getSession().getAttribute("account");
+        List<Post> posts = postService.getPosts(account.email);
+        return posts;
     }
 }
