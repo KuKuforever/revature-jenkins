@@ -1,9 +1,6 @@
 package com.ex.eflea_springboot.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /* This is a class for status lookup table*/
@@ -14,6 +11,8 @@ public class Status {
     public static final int ACTIVE = 2;
     public static final int REJECTED = 3;
     public static final int CLOSED = 4;
+    public static final String STATUS_PENDING = "Pending";
+    public static final String STATUS_ACTIVE = "ACTIVE";
 
     private int statusId;
     private String status;

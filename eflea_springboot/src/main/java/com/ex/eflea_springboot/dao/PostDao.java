@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PostDao extends JpaRepository<Post, Serializable> {
     List<Post> findByPostEmail(Serializable String);
+
 }
