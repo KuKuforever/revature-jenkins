@@ -12,7 +12,7 @@ public class Status {
     public static final int REJECTED = 3;
     public static final int CLOSED = 4;
     public static final String STATUS_PENDING = "Pending";
-    public static final String STATUS_ACTIVE = "ACTIVE";
+    public static final String STATUS_ACTIVE = "Active";
 
     private int statusId;
     private String status;
