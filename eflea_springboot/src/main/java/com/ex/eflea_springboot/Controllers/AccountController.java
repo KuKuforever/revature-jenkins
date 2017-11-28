@@ -101,6 +101,7 @@ public class AccountController {
     @RequestMapping(path = "/update", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
     public void update(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
+        logger.info("in update() from AccountController");
         try{
             Account account = accountService.updateProfile(user.email, user.phone, user.username);
             Session updated = new Session();

@@ -51,6 +51,7 @@ public class Post {
         this.postDate = postDate;
     }
 
+/*
     @ManyToOne
     @JoinColumn(name="STATUSID", referencedColumnName = "STATUSID", nullable = false)
     public Status getStatusId() {
@@ -63,6 +64,29 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name="TYPEID", referencedColumnName = "TYPEID", nullable = false)
+    public Type getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Type typeId) {
+        this.typeId = typeId;
+    }*/
+
+
+    @ManyToOne
+    @JoinColumn(name="STATUSID", referencedColumnName = "STATUSID", nullable = false)
+    //@Column(name="STATUSID")
+    public Status getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Status statusId) {
+        this.statusId = statusId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="TYPEID", referencedColumnName = "TYPEID", nullable = false)
+    //@Column(name="TYPEID")
     public Type getTypeId() {
         return typeId;
     }

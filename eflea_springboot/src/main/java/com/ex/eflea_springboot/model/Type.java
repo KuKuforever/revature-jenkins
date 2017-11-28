@@ -10,6 +10,8 @@ import javax.persistence.Table;
 public class Type {
     public static final int SALE = 1;
     public static final int WANT = 2;
+    public static final String TYPE_SALE = "Sale";
+    public static final String TYPE_WANT = "Want";
 
     private int typeId;
     private String type;

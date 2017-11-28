@@ -16,7 +16,7 @@ export class UpdateInfoComponent implements OnInit {
   phone;
   constructor(private router: Router,
               private http: HttpClient) {
-    //this.getProfile();
+    // this.getProfile();
   }
 
   ngOnInit() {

@@ -13,4 +13,6 @@ public interface PostDao extends JpaRepository<Post, Serializable> {
     List<Post> findByPostEmail(Serializable String);
     Post findByPostId(Serializable Long);
     List<Post> findByStatusId(Status status);
+
+
 }

@@ -1,4 +1,5 @@
 export class Post {
+
   title:  string;
   postEmail:  string;
   statusId:   any;
@@ -9,5 +10,5 @@ export class Post {
   zip:  string;
   description:  string;
   postDate: string;
-  postId: string;
+  postId: number;
 }
