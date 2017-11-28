@@ -23,6 +23,7 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
 import { PostContentComponent } from './post-content/post-content.component';
 import { PendingPostComponent } from './pending-post/pending-post.component';
 import {PostService} from './post.service';
+import { GoogleMapComponent } from './google-map/google-map.component';
 
 
 
@@ -45,7 +46,8 @@ import {PostService} from './post.service';
     NewSellPostComponent,
     SuccessMessageComponent,
     PostContentComponent,
-    PendingPostComponent
+    PendingPostComponent,
+    GoogleMapComponent
   ],
   imports: [
     BrowserModule,

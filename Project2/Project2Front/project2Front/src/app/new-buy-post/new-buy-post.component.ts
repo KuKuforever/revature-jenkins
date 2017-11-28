@@ -10,7 +10,7 @@ import {User} from '../models/user';
   styleUrls: ['./new-buy-post.component.css']
 })
 export class NewBuyPostComponent implements OnInit {
-  imgInput: HTMLElement |any;
+  imgInput: any;
   imgFile: any;
   imgur: any;
   fd: FormData;
@@ -72,14 +72,16 @@ export class NewBuyPostComponent implements OnInit {
   }
 
   uploadToImgur() {
-    this.imgInput = document.getElementById('buy-post-img');
-    this.imgFile = this.imgInput.files[0];
     console.log(this.imageData);
     this.http.post(this.imgurUrl, this.imgFile,
       {headers: new HttpHeaders().set('Authorization', 'Client-ID 797cf96bf083de6')})
       .subscribe((resp) => {
         console.log(resp);
-        console.log(resp.data.link);
+        //console.log(resp.data.link);
       });
+  }
+
+  getFile(evt) {
+    this.imgFile = evt.target.files[0];
   }
 }
