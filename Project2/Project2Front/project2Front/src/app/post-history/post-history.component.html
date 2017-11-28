@@ -18,8 +18,8 @@
       <tr *ngFor="let post of posts">
         <td>{{post.postId}}</td>
         <td class="btn" style="text-decoration: underline; color: blue;" (click)="viewPost(post.postId)">{{post.title}}</td>
-        <td>{{post.typeId}}</td>
-        <td>{{post.statusId}}</td>
+        <td>{{post.typeId.type}}</td>
+        <td>{{post.statusId.status}}</td>
         <td>{{post.postDate | date: "medium"}}</td>
       </tr>
     </table>

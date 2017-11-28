@@ -1,7 +1,5 @@
 package com.ex.eflea_springboot.Controllers;
 
-
-import com.ex.eflea_springboot.dao.AccountDao;
 import com.ex.eflea_springboot.helpers.Session;
 import com.ex.eflea_springboot.model.Account;
 import com.ex.eflea_springboot.services.AccountService;

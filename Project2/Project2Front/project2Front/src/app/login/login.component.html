@@ -13,7 +13,7 @@
                 <input class="form-control"  formControlName="verifyEmail" placeholder="Email" name="email" [(ngModel)]="email" type="email" email="true">
               </div>
               <div class="alert" align="center" *ngIf="!form.controls['verifyEmail'].valid && form.controls['verifyEmail'].touched"
-                   style="background: lightcyan ">This has to be an valid email address</div>
+                   style="background: lightcyan ">This has to be a valid email address</div>
               <div class="form-group">
                 <input class="form-control" formControlName="verifyPassword" placeholder="Password" name="password" [(ngModel)]="password" type="password">
               </div>

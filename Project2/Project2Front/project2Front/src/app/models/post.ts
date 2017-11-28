@@ -2,8 +2,8 @@ export class Post {
 
   title:  string;
   postEmail:  string;
-  statusId:   number;
-  typeId: number;
+  statusId:   any;
+  typeId: any;
   city: string;
   state:  string;
   country:  string;

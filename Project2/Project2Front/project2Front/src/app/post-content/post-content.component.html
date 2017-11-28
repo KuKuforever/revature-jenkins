@@ -1,3 +1,40 @@
-<p>
-{{id}}
-</p>
+<app-nav-bar></app-nav-bar>
+
+
+<div class="container" *ngIf="post" style="overflow: auto;">
+  <div class="row">
+    <div class="col-xs-4 item-photo">
+      <img style="max-width:100%;"
+           src="https://static.boredpanda.com/blog/wp-content/uploads/2016/01/bear-dogs-310__605.jpg" />
+    </div>
+    <div class="col-xs-6 col-xs-offset-2" style="border:0px solid gray">
+      <h3>{{post.title}}</h3>
+      <br>
+      <label>Post Type:</label>
+      <p>{{post.typeId.type}}</p>
+      <label>Location:</label>
+      <p>{{post.city}} , {{post.state}}, {{post.country}}</p>
+      <label>Zip Code:</label>
+      <p>{{post.zip}}</p>
+      <label>Email:</label>
+      <p>{{post.postEmail}}</p>
+      <label>Date Posted:</label>
+      <p>{{post.postDate | date: "medium"}}</p>
+      <fieldset>
+        <label>Description:</label>
+        <p>{{post.description}}</p>
+      </fieldset>
+      <br>
+      <div class="container-fluid" *ngIf="(action && admin)">
+        <button class="btn-success col-md-3 " (click)="approve()">Approve</button>
+        <button class="btn-success col-md-2 col-md-offset-1" (click)="deny()">Deny</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
