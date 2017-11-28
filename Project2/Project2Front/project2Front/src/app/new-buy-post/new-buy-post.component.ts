@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Post} from '../models/post';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -10,6 +10,7 @@ import {User} from '../models/user';
   styleUrls: ['./new-buy-post.component.css']
 })
 export class NewBuyPostComponent implements OnInit {
+  imgInput: HTMLElement |any;
   imgFile: any;
   imgur: any;
   fd: FormData;
@@ -31,7 +32,6 @@ export class NewBuyPostComponent implements OnInit {
   // imgFile: File;
   private headers: HttpHeaders;
   private imageData: FormData;
-  private imgInput: HTMLElement | any;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -73,36 +73,13 @@ export class NewBuyPostComponent implements OnInit {
 
   uploadToImgur() {
     this.imgInput = document.getElementById('buy-post-img');
-    this.imgFile = this.imgInput[0];
-    this.headers = new HttpHeaders();
-    this.headers.set('Authorization', 'Client-ID 797cf96bf083de6');
-    console.log(this.headers);
-    this.imageData = new FormData();
-    this.imageData.append('image', this.imgFile);
-    this.http.post(this.imgurUrl, new FormData().append('image', this.imgInput),
+    this.imgFile = this.imgInput.files[0];
+    console.log(this.imageData);
+    this.http.post(this.imgurUrl, this.imgFile,
       {headers: new HttpHeaders().set('Authorization', 'Client-ID 797cf96bf083de6')})
       .subscribe((resp) => {
         console.log(resp);
+        console.log(resp.data.link);
       });
-    /*this.imgFile = this.imgInput.files[0];
-    this.imgur = require('imgur');
-    this.imgur.setClientId('797cf96bf083de6');
-    this.imgur.setAPIUrl('https://api.imgur.com/3/image');
-    this.imgur.uploadFile(this.imgInput)
-      .then(function (json) {
-        console.log(json.data.link);
-      })
-      .catch(function (err) {
-        console.error(err.message);
-      });*/
-    /*console.log('Now upload to imgur...');
-    this.xhttp = new XMLHttpRequest();
-    this.fd = new FormData();
-
-    this.fd.append('image', this.imgInput);
-    this.http.post(this.imgurUrl, this.imgInput)
-      .subscribe((resp) => {
-        console.log(resp);
-      });*/
   }
 }
