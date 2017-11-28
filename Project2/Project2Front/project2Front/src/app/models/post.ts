@@ -11,4 +11,5 @@ export class Post {
   description:  string;
   postDate: string;
   postId: number;
+  imgUrl: string;
 }

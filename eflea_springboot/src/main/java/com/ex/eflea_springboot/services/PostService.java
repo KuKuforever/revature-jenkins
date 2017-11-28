@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class PostService {
-    private static Logger logger = LoggerFactory.getLogger(AccountController.class);
+    private static Logger logger = LoggerFactory.getLogger(PostService.class);
     private PostDao postDao;
     @Autowired
     public PostService(PostDao postDao)

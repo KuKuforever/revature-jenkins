@@ -7,6 +7,7 @@ import com.ex.eflea_springboot.model.Status;
 import com.ex.eflea_springboot.model.Type;
 import com.ex.eflea_springboot.services.AccountService;
 
+import com.ex.eflea_springboot.services.ImageService;
 import com.ex.eflea_springboot.services.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ import java.util.List;
 @RequestMapping("/post")
 public class PostController {
     private PostService postService;
+    private ImageService imageService;
     private static Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     //static class to hold json object
@@ -42,6 +44,7 @@ public class PostController {
         public String description;
         public Date postDate;
         public long postId;
+        public String imgUrl;
 
         @Override
         public String toString() {
@@ -61,8 +64,9 @@ public class PostController {
         }
     }
     @Autowired
-    public PostController(PostService postService){
+    public PostController(PostService postService, ImageService imageService){
         this.postService = postService;
+        this.imageService = imageService;
     }
 
 
@@ -166,6 +170,9 @@ public class PostController {
             post.setPostDate(new Date());
             logger.info(post.toString());
             long id = postService.uploadPost(post);
+            if(jsonPost.imgUrl!=null) {
+                imageService.uploadImage(id, jsonPost.imgUrl);
+            }
             logger.info("The id of newly upload post: "+id);
 
 
