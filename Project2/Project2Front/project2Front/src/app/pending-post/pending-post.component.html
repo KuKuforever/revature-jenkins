@@ -1,3 +1,27 @@
-<p>
-  pending-post works!
-</p>
+<app-nav-bar></app-nav-bar>
+
+
+<div class="container-fluid col-md-10 col-md-offset-1" *ngIf="posts">
+  <h4 align="center">My Post History</h4>
+  <legend class="col-sm-12"></legend>
+
+
+  <div class="container col-md-12">
+    <table class="table table-striped">
+      <tr>
+        <th>Post ID</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Date Posted</th>
+      </tr>
+      <tr *ngFor="let post of posts">
+        <td>{{post.postId}}</td>
+        <td class="btn" style="text-decoration: underline; color: blue;" (click)="viewPost(post.postId)">{{post.title}}</td>
+        <td>{{post.typeId.type}}</td>
+        <td>{{post.statusId.status}}</td>
+        <td>{{post.postDate | date: "medium"}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

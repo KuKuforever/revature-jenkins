@@ -13,8 +13,8 @@ public class Post {
     private long postId;
     private String postEmail;
     private Date postDate;
-    private int statusId;
-    private int typeId;
+    private Status statusId;
+    private Type typeId;
     private String city;
     private String state;
     private String country;
@@ -51,25 +51,23 @@ public class Post {
         this.postDate = postDate;
     }
 
-    /*@OneToOne
-    @JoinColumn(name="STATUSID")*/
-    @Column(name="STATUSID")
-    public int getStatusId() {
+    @ManyToOne
+    @JoinColumn(name="STATUSID", referencedColumnName = "STATUSID", nullable = false)
+    public Status getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(Status statusId) {
         this.statusId = statusId;
     }
 
-    /*@OneToOne
-    @JoinColumn(name="TYPEID")*/
-    @Column(name="TYPEID")
-    public int getTypeId() {
+    @ManyToOne
+    @JoinColumn(name="TYPEID", referencedColumnName = "TYPEID", nullable = false)
+    public Type getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(Type typeId) {
         this.typeId = typeId;
     }
 

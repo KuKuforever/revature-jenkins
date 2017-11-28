@@ -19,7 +19,6 @@ import { PostHistoryComponent } from './post-history/post-history.component';
 import { UpdateInfoComponent } from './update-info/update-info.component';
 import { NewBuyPostComponent } from './new-buy-post/new-buy-post.component';
 import { NewSellPostComponent } from './new-sell-post/new-sell-post.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { PostContentComponent } from './post-content/post-content.component';
 import { PendingPostComponent } from './pending-post/pending-post.component';
@@ -44,7 +43,6 @@ import {PostService} from './post.service';
     UpdateInfoComponent,
     NewBuyPostComponent,
     NewSellPostComponent,
-    AdminPageComponent,
     SuccessMessageComponent,
     PostContentComponent,
     PendingPostComponent
