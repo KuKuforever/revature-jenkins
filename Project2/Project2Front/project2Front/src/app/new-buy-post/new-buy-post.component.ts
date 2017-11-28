@@ -10,6 +10,7 @@ import {User} from '../models/user';
   styleUrls: ['./new-buy-post.component.css']
 })
 export class NewBuyPostComponent implements OnInit {
+  imgFile: any;
   imgur: any;
   fd: FormData;
 
@@ -20,7 +21,6 @@ export class NewBuyPostComponent implements OnInit {
   state;
   zip;
   description;
-  imgInput: File;
   url = 'http://localhost:8085/account/verify';
   postUrl = 'http://localhost:8085/post/new';
   imgurUrl = 'https://api.imgur.com/3/image';
@@ -30,6 +30,8 @@ export class NewBuyPostComponent implements OnInit {
   private xhttp: XMLHttpRequest;
   // imgFile: File;
   private headers: HttpHeaders;
+  private imageData: FormData;
+  private imgInput: HTMLElement | any;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -38,13 +40,12 @@ export class NewBuyPostComponent implements OnInit {
   }
 
   post() {
-    console.log(this.imgInput);
+    console.log('Image file: ');
     console.log(this.user.email);
-    console.log(this.postObj);
     /* UPLOAD IMAGE TO IMGUR*/
-    // this.uploadToImgur();
+     this.uploadToImgur();
     /* upload post */
-    this.postObj.title = this.title;
+    /*this.postObj.title = this.title;
     this.postObj.postEmail = this.user.email;
     this.postObj.title = this.title;
     this.postObj.city = this.city;
@@ -58,7 +59,7 @@ export class NewBuyPostComponent implements OnInit {
         this.router.navigate([('buy')]);
       }, () => {
         console.error('upload new post failed');
-      });
+      });*/
   }
 
   getProfile() {
@@ -71,10 +72,15 @@ export class NewBuyPostComponent implements OnInit {
   }
 
   uploadToImgur() {
+    this.imgInput = document.getElementById('buy-post-img');
+    this.imgFile = this.imgInput[0];
     this.headers = new HttpHeaders();
-    this.headers.set('Authorization', 'Client-ID {{797cf96bf083de6}}');
+    this.headers.set('Authorization', 'Client-ID 797cf96bf083de6');
     console.log(this.headers);
-    this.http.post(this.imgurUrl, this.imgInput)
+    this.imageData = new FormData();
+    this.imageData.append('image', this.imgFile);
+    this.http.post(this.imgurUrl, new FormData().append('image', this.imgInput),
+      {headers: new HttpHeaders().set('Authorization', 'Client-ID 797cf96bf083de6')})
       .subscribe((resp) => {
         console.log(resp);
       });

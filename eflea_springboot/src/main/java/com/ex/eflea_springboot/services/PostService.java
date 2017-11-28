@@ -60,7 +60,7 @@ public class PostService {
     }
 
     public void rejectByPostId(Long id) throws Exception {
-        if(id <= 0) {
+        if (id <= 0) {
             throw new Exception("Invalid post ID");
         }
 
@@ -70,6 +70,7 @@ public class PostService {
         status.setStatusId(3);
         post.setStatusId(status);
         postDao.save(post);
+    }
 
     public long uploadPost(Post post){
             return postDao.save(post).getPostId();
