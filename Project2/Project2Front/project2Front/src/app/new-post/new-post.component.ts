@@ -34,7 +34,7 @@ export class NewPostComponent implements OnInit {
   // imgFile: File;
   private headers: HttpHeaders;
   private imageData: FormData;
-  private selectType: number;
+  private selectType: number = 1;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -44,7 +44,7 @@ export class NewPostComponent implements OnInit {
 
   post() {
     console.log(this.user.email);
-
+    console.log("Type is: " + this.selectType);
     this.postObj.title = this.title;
     this.postObj.postEmail = this.user.email;
     this.postObj.title = this.title;
@@ -57,7 +57,12 @@ export class NewPostComponent implements OnInit {
     if (this.imgFile == null) {
       this.http.post(this.postUrl, this.postObj, {responseType: 'text', withCredentials: true})
         .subscribe(() => {
-          this.router.navigate([('buy')]);
+          console.log("Type is: " + this.selectType);
+          if (this.selectType == 2) {
+            this.router.navigate([('buy')]);
+          } else {
+            this.router.navigate([('sell')]);
+          }
         }, () => {
           console.error('upload new post failed');
         });
@@ -69,7 +74,12 @@ export class NewPostComponent implements OnInit {
         this.postObj.imgUrl = link;
         this.http.post(this.postUrl, this.postObj, {responseType: 'text', withCredentials: true})
           .subscribe(() => {
-            this.router.navigate([('buy')]);
+            if (this.selectType == 2) {
+              this.router.navigate([('buy')]);
+            } else {
+              this.router.navigate([('sell')]);
+            }
+
           }, () => {
             console.error('upload new post failed');
           });
@@ -98,5 +108,11 @@ export class NewPostComponent implements OnInit {
 
   getFile(evt) {
     this.imgFile = evt.target.files[0];
+  }
+
+  getType(evt) {
+    console.log("Type before: " + this.selectType);
+    this.selectType = evt.target.value;
+    console.log("Type after: " + this.selectType);
   }
 }
