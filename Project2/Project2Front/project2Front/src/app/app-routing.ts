@@ -13,6 +13,7 @@ import {NewSellPostComponent} from './new-sell-post/new-sell-post.component';
 import {SuccessMessageComponent} from './success-message/success-message.component';
 import {PendingPostComponent} from './pending-post/pending-post.component';
 import {PostContentComponent} from './post-content/post-content.component';
+import {NewPostComponent} from "./new-post/new-post.component";
 
 const appRoutes: Routes = [
   {
@@ -66,6 +67,10 @@ const appRoutes: Routes = [
   {
     path: 'viewPost',
     component: PostContentComponent
+  },
+  {
+    path: 'newPost',
+    component: NewPostComponent
   }
 ];
 

@@ -1,0 +1,75 @@
+<app-nav-bar></app-nav-bar>
+
+<h4 align="center">Make a New Post</h4>
+<legend class="col-lg-12" ></legend>
+
+<div class="container col-lg-10 col-lg-offset-1" >
+  <div class="row">
+    <form role="form" id="contact-form" class="contact-form">
+      <div class="row">
+
+        <div class="col-md-6 col-md-offset-1">
+          <div class="form-group">
+            <label style="padding-right:2px">Post Type:
+            <select id="post-type-select" class="col-xs-3 form-control" ([ngModel])="selectType">
+              <option value="1">Sale</option>
+              <option value="2">Want</option>
+            </select>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="col-md-6 col-md-offset-1">
+          <div class="form-group">
+            <input type="text" class="form-control" name="title" autocomplete="off" id="title" placeholder="Title" [(ngModel)]="title">
+          </div>
+        </div>
+
+        <div class="col-md-8 col-md-offset-1">
+          <div class="form-group">
+            <input type="text" class="form-control" name="street" autocomplete="off" placeholder="Street">
+          </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+          <div class="form-group">
+            <input type="text" class="form-control" name="city" autocomplete="off" placeholder="City" [(ngModel)]="city">
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <input type="text" class="form-control" name="state" autocomplete="off" placeholder="State" [(ngModel)]="state">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" class="form-control" name="zipCode" autocomplete="off" placeholder="Zip Code" [(ngModel)]="zip">
+          </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-1">
+          <label >Add image:
+            <input type="file" id = "buy-post-img" (change)="getFile($event)" name="myImage" accept="image/*" multiple>
+          </label>
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="form-group">
+            <textarea class="form-control textarea" rows="5" name="Message" id="Message" placeholder="Product Description" [(ngModel)]="description"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-11">
+          <button type="submit" class="btn main-btn pull-right" (click)="post()">Post !</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

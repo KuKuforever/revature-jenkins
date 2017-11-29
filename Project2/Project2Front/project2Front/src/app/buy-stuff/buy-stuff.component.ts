@@ -13,7 +13,7 @@ export class BuyStuffComponent implements OnInit {
   ngOnInit() {
   }
 
-  newBuyPost() {
-    this.router.navigate([('newBuyPost')]);
+  newPost() {
+    this.router.navigate([('newPost')]);
   }
 }

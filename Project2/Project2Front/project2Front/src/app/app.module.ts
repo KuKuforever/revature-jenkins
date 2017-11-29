@@ -25,6 +25,7 @@ import { PendingPostComponent } from './pending-post/pending-post.component';
 import {PostService} from './post.service';
 import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
+import { NewPostComponent } from './new-post/new-post.component';
 
 
 
@@ -47,7 +48,8 @@ import {AgmCoreModule} from '@agm/core';
     NewSellPostComponent,
     SuccessMessageComponent,
     PostContentComponent,
-    PendingPostComponent
+    PendingPostComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
