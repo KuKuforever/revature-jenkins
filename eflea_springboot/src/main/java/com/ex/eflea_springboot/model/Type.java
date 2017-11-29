@@ -16,6 +16,12 @@ public class Type {
     private int typeId;
     private String type;
 
+    public Type() {};
+    public Type(int typeId, String type){
+        this.typeId = typeId;
+        this.type = type;
+    }
+
     @Id
     @Column(name="TYPEID")
     public int getTypeId() {

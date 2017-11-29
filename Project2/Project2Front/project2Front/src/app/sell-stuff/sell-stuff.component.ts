@@ -14,6 +14,6 @@ export class SellStuffComponent implements OnInit {
   }
 
   newSellPost() {
-    this.router.navigate([('newSellPost')]);
+    this.router.navigate([('newPost')]);
   }
 }

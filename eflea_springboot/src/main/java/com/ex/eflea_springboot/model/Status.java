@@ -17,6 +17,12 @@ public class Status {
     private int statusId;
     private String status;
 
+    public Status(){}
+    public Status(int statusId, String status){
+        this.statusId = statusId;
+        this.status = status;
+    }
+
     @Id
     @Column(name="STATUSID")
     public int getStatusId() {

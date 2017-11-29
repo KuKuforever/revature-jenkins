@@ -4,6 +4,7 @@ import com.ex.eflea_springboot.Controllers.AccountController;
 import com.ex.eflea_springboot.dao.PostDao;
 import com.ex.eflea_springboot.model.Post;
 import com.ex.eflea_springboot.model.Status;
+import com.ex.eflea_springboot.model.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +75,10 @@ public class PostService {
 
     public long uploadPost(Post post){
             return postDao.save(post).getPostId();
+    }
+
+    public List<Post> getPostByStatusAndType(Status status, Type type) {
+
+        return postDao.findByStatusIdAndTypeId(status, type);
     }
 }
