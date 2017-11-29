@@ -11,6 +11,11 @@ import {User} from '../models/user';
   styleUrls: ['./post-content.component.css']
 })
 export class PostContentComponent implements OnInit {
+  title = 'GoogleMap';
+  lat: number;
+  lng: number;
+  zoom = 14;
+  data: any;
   id: number;
   admin = false;
   user: User;
@@ -20,6 +25,7 @@ export class PostContentComponent implements OnInit {
   verifyUrl = 'http://localhost:8085/account/verify';
   approveUrl = 'http://localhost:8085/post/approve';
   denyUrl = 'http://localhost:8085/post/deny';
+  queryUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
 
   constructor(private postService: PostService,
               private http: HttpClient,
@@ -35,6 +41,7 @@ export class PostContentComponent implements OnInit {
     this.http.post<Post>(this.url, this.id, {withCredentials: true})
       .subscribe((data) => {
         this.post = data;
+        this.getMap();
         if (this.post.statusId.statusId === 1) {
           this.action = true;
         }
@@ -47,10 +54,8 @@ export class PostContentComponent implements OnInit {
     this.http.get<User>(this.verifyUrl, {withCredentials: true})
       .subscribe((data) => {
         this.user = data;
-        console.log(this.user);
         if (this.user.title === 1) {
           this.admin = true;
-          console.log(this.admin);
         }
       }, (err) => {
         console.error(err);
@@ -75,6 +80,16 @@ export class PostContentComponent implements OnInit {
         this.router.navigate([('pendingPost')]);
       }, (err) => {
         console.error(err);
+      });
+  }
+
+  getMap() {
+    this.queryUrl = this.queryUrl + this.post.zip;
+    this.http.get(this.queryUrl)
+      .subscribe((data) => {
+        this.data = data.results[0].geometry.bounds;
+        this.lat = (this.data.northeast.lat + this.data.southwest.lat) / 2;
+        this.lng = (this.data.northeast.lng + this.data.southwest.lng) / 2;
       });
   }
 }

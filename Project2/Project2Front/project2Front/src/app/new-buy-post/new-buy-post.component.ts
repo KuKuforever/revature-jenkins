@@ -77,7 +77,6 @@ export class NewBuyPostComponent implements OnInit {
       {headers: new HttpHeaders().set('Authorization', 'Client-ID 797cf96bf083de6')})
       .subscribe((resp) => {
         console.log(resp);
-        //console.log(resp.data.link);
       });
   }
 
