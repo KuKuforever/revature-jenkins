@@ -6,6 +6,11 @@
     <div class="col-xs-4 item-photo">
       <img style="max-width:100%;"
            src="https://static.boredpanda.com/blog/wp-content/uploads/2016/01/bear-dogs-310__605.jpg" />
+      <br>
+      <br>
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
     </div>
     <div class="col-xs-6 col-xs-offset-2" style="border:0px solid gray">
       <h3>{{post.title}}</h3>

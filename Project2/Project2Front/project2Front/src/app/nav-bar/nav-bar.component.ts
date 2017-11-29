@@ -44,7 +44,6 @@ export class NavBarComponent implements OnInit {
   logout() {
     this.http.post(this.url, '',{responseType: 'text', withCredentials: true})
       .subscribe((data) => {
-        console.log(data);
         this.router.navigate([('')]);
       }, (err) => {
         console.error(err);
@@ -59,10 +58,8 @@ export class NavBarComponent implements OnInit {
     this.http.get<User>(this.verifyUrl, {withCredentials: true})
       .subscribe((data) => {
         this.user = data;
-        console.log(this.user);
         if (this.user.title === 1) {
           this.admin = true;
-          console.log(this.admin);
         }
       }, (err) => {
         console.error(err);

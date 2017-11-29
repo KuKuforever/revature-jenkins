@@ -23,7 +23,8 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
 import { PostContentComponent } from './post-content/post-content.component';
 import { PendingPostComponent } from './pending-post/pending-post.component';
 import {PostService} from './post.service';
-import { GoogleMapComponent } from './google-map/google-map.component';
+import {CommonModule} from '@angular/common';
+import {AgmCoreModule} from '@agm/core';
 
 
 
@@ -46,15 +47,18 @@ import { GoogleMapComponent } from './google-map/google-map.component';
     NewSellPostComponent,
     SuccessMessageComponent,
     PostContentComponent,
-    PendingPostComponent,
-    GoogleMapComponent
+    PendingPostComponent
   ],
   imports: [
     BrowserModule,
     AppRouting,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDMSGyrfPdWSOIqX7gWkY3Q35JM-ED-2ok'
+    })
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
