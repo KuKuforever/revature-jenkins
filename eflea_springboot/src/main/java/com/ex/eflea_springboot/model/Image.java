@@ -12,7 +12,7 @@ public class Image {
     private String url;
 
     @Id
-    @Column
+    @Column(name = "IMAGEID")
     @GenericGenerator(name="imageIdGen", strategy = "increment")
     @GeneratedValue(generator = "imageIdGen")
     public long getImageId() {
@@ -23,7 +23,7 @@ public class Image {
         this.imageId = imageId;
     }
 
-    @Column
+    @Column(name = "POSTID")
     public long getPostId() {
         return postId;
     }
@@ -32,7 +32,7 @@ public class Image {
         this.postId = postId;
     }
 
-    @Column
+    @Column(name = "URL")
     public String getUrl() {
         return url;
     }
