@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -25,8 +23,10 @@ import { PendingPostComponent } from './pending-post/pending-post.component';
 import {PostService} from './post.service';
 import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
-
-
+import { AngularTableComponent } from './angular-table/angular-table.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
+import {MaterialModule} from './MaterialModule';
 
 
 @NgModule({
@@ -47,15 +47,22 @@ import {AgmCoreModule} from '@agm/core';
     NewSellPostComponent,
     SuccessMessageComponent,
     PostContentComponent,
-    PendingPostComponent
+    PendingPostComponent,
+    AngularTableComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRouting,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
     CommonModule,
+    MaterialModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMSGyrfPdWSOIqX7gWkY3Q35JM-ED-2ok'
     })
