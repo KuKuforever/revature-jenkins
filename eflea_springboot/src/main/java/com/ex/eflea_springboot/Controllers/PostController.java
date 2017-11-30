@@ -177,6 +177,17 @@ public class PostController {
         }
         return new ResponseEntity(HttpStatus.OK);
     }
+    @PostMapping(path = "/close", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity closeAction(@RequestBody Long id) {
+        try {
+            logger.info("now in closeAction()");
+            postService.closePostById(id);
+        } catch(Exception e) {
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
     @RequestMapping(path = "/new", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
         MediaType.APPLICATION_XML_VALUE})

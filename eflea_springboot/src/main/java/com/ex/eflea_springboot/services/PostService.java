@@ -52,9 +52,7 @@ public class PostService {
         }
 
         Post post = postDao.findByPostId(id);
-        Status status = new Status();
-        status.setStatus("active");
-        status.setStatusId(2);
+        Status status = new Status(Status.ACTIVE, Status.STATUS_ACTIVE);
         post.setStatusId(status);
         postDao.save(post);
 
@@ -66,9 +64,17 @@ public class PostService {
         }
 
         Post post = postDao.findByPostId(id);
-        Status status = new Status();
-        status.setStatus("rejected");
-        status.setStatusId(3);
+        Status status = new Status(Status.REJECTED, Status.STATUS_REJECTED);
+        post.setStatusId(status);
+        postDao.save(post);
+    }
+
+    public void closePostById(Long id) throws Exception{
+        if (id<=0) {
+            throw new Exception(("Invalid Post ID"));
+        }
+        Post post = postDao.findByPostId(id);
+        Status status = new Status(Status.CLOSED, Status.STATUS_CLOSED);
         post.setStatusId(status);
         postDao.save(post);
     }
@@ -81,4 +87,6 @@ public class PostService {
 
         return postDao.findByStatusIdAndTypeId(status, type);
     }
+
+
 }

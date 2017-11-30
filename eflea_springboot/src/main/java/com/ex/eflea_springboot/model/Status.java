@@ -13,6 +13,8 @@ public class Status {
     public static final int CLOSED = 4;
     public static final String STATUS_PENDING = "Pending";
     public static final String STATUS_ACTIVE = "Active";
+    public static final String STATUS_REJECTED = "Rejected";
+    public static final String STATUS_CLOSED = "Closed";
 
     private int statusId;
     private String status;
