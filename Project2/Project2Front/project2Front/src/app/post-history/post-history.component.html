@@ -1,50 +1,27 @@
 <app-nav-bar></app-nav-bar>
 
 
-<<div class="container-fluid col-md-10 col-md-offset-1" *ngIf="posts">
+<div class="container-fluid col-md-10 col-md-offset-1" *ngIf="posts">
   <h4 align="center">My Post History</h4>
   <legend class="col-sm-12"></legend>
 
 
   <div class="container col-md-12">
-    <mat-table #table [dataSource]="dataSource" matSort>
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="Post ID" >
-        <mat-header-cell *matHeaderCellDef mat-sort-header (click)="manSort()" > Post ID </mat-header-cell>
-        <mat-cell *matCellDef="let post"  > {{post.postId}} </mat-cell>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-        <mat-cell class="btn-link" *matCellDef="let post"  (click)="viewPost(post.postId)" > {{post.title}} </mat-cell>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container  matColumnDef="Type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
-        <mat-cell *matCellDef="let post"> {{post.typeId.type}} </mat-cell>
-      </ng-container>
-
-
-      <ng-container matColumnDef="Status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let post"> {{post.statusId.status}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Date Posted">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-        <mat-cell *matCellDef="let post"> {{post.date | date: "medium"}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <table class="table table-striped">
+      <tr>
+        <th>Post ID</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Date Posted</th>
+      </tr>
+      <tr *ngFor="let post of posts">
+        <td>{{post.postId}}</td>
+        <td class="btn" style="text-decoration: underline; color: blue;" (click)="viewPost(post.postId)">{{post.title}}</td>
+        <td>{{post.typeId.type}}</td>
+        <td>{{post.statusId.status}}</td>
+        <td>{{post.postDate | date: "medium"}}</td>
+      </tr>
+    </table>
   </div>
 </div>
-
-
-<!-- Copyright 2017 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

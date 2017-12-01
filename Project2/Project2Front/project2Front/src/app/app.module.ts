@@ -23,10 +23,11 @@ import { PendingPostComponent } from './pending-post/pending-post.component';
 import {PostService} from './post.service';
 import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
-import { AngularTableComponent } from './angular-table/angular-table.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
-import {MaterialModule} from './MaterialModule';
+import {
+  MatButtonModule, MatCheckboxModule, MatGridListModule, MatNativeDateModule, MatSort, MatSortModule,
+  MatTableModule
+} from '@angular/material';
 
 
 @NgModule({
@@ -47,8 +48,7 @@ import {MaterialModule} from './MaterialModule';
     NewSellPostComponent,
     SuccessMessageComponent,
     PostContentComponent,
-    PendingPostComponent,
-    AngularTableComponent
+    PendingPostComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +60,11 @@ import {MaterialModule} from './MaterialModule';
     MatButtonModule,
     MatCheckboxModule,
     CommonModule,
-    MaterialModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatSortModule,
     ReactiveFormsModule,
+    MatGridListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMSGyrfPdWSOIqX7gWkY3Q35JM-ED-2ok'
     })

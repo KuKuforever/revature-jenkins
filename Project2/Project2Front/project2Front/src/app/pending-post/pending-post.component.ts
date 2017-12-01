@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Post} from '../models/post';
 import {PostService} from '../post.service';
 import {Router} from '@angular/router';
 import {User} from '../models/user';
+import {MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-pending-post',
@@ -17,6 +18,10 @@ export class PendingPostComponent implements OnInit {
   status = 'Pending';
   url = 'http://localhost:8085/post/getPendingPost';
   verifyUrl = 'http://localhost:8085/account/verify';
+  displayedColumns1 = ['postId', 'title', 'typeId.type', 'statusId.status', 'postDate'];
+  dataSource1 = new MatTableDataSource(this.posts);
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -31,7 +36,9 @@ export class PendingPostComponent implements OnInit {
     this.http.post<Post[]>(this.url, this.status, {responseType: 'json', withCredentials: true})
       .subscribe((data) => {
         this.posts = data;
-        console.log(this.posts);
+        console.log(this.posts)
+        this.dataSource1  = new MatTableDataSource(this.posts);
+        this.dataSource1.sort = this.sort;
       }, (err) => {
         console.error(err);
       });

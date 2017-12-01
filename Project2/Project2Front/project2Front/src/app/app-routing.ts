@@ -13,7 +13,6 @@ import {NewSellPostComponent} from './new-sell-post/new-sell-post.component';
 import {SuccessMessageComponent} from './success-message/success-message.component';
 import {PendingPostComponent} from './pending-post/pending-post.component';
 import {PostContentComponent} from './post-content/post-content.component';
-import {AngularTableComponent} from "./angular-table/angular-table.component";
 
 const appRoutes: Routes = [
   {
@@ -67,10 +66,6 @@ const appRoutes: Routes = [
   {
     path: 'viewPost',
     component: PostContentComponent
-  },
-  {
-    path: 'table',
-    component: AngularTableComponent
   }
 ];
 

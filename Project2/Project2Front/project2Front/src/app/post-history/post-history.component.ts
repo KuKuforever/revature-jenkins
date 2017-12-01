@@ -10,18 +10,9 @@ import {MatSort, MatTableDataSource} from '@angular/material';
   templateUrl: './post-history.component.html',
   styleUrls: ['./post-history.component.css']
 })
-export class PostHistoryComponent implements OnInit, AfterViewInit {
+export class PostHistoryComponent implements OnInit {
   posts: Post[];
-  displayedColumns = ['Post ID', 'Title', 'Type', 'Status', 'Date Posted'];
-  dataSource;
-
-  @ViewChild(MatSort) sort: MatSort;
-
   url = 'http://localhost:8085/post/postHistory';
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -29,17 +20,12 @@ export class PostHistoryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getPost();
-    this.dataSource = new MatTableDataSource(this.posts)
-    this.dataSource.sort = this.sort;
   }
 
   getPost() {
     this.http.get<Post[]>(this.url, {withCredentials: true})
       .subscribe((data) => {
         this.posts = data;
-        this.dataSource = new MatTableDataSource(this.posts);
-        this.dataSource.sort = this.sort;
-        console.log(this.posts);
       }, (err) => {
         console.error(err);
       });
@@ -51,7 +37,6 @@ export class PostHistoryComponent implements OnInit, AfterViewInit {
     this.router.navigate([('viewPost')]);
   }
 
-  manSort () {
-    this.ngAfterViewInit();
-  }
+
+
 }
