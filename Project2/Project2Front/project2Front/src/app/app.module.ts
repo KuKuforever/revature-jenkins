@@ -30,6 +30,7 @@ import {
 import { NewPostComponent } from './new-post/new-post.component';
 import { HomeSearchComponent } from './home-search/home-search.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatButtonModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    NgxPaginationModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent]

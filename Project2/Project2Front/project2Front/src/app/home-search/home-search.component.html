@@ -50,8 +50,13 @@
         <mat-grid-tile>2</mat-grid-tile>
         <mat-grid-tile>3</mat-grid-tile>
         <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile *ngFor="let post of posts | paginate: {itemsPerPage:30, currentPage: p}"></mat-grid-tile>
       </mat-grid-list>
     </div>
+    <div class="row">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
   </div>
 </div>
 
