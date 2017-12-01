@@ -18,14 +18,17 @@ export class PostContentComponent implements OnInit {
   data: any;
   id: number;
   admin = false;
+  owner = false;
   user: User;
   post: Post;
-  action = false;
+  pending = false;
+  active = false;
   url = 'http://localhost:8085/post/getPost';
   verifyUrl = 'http://localhost:8085/account/verify';
   approveUrl = 'http://localhost:8085/post/approve';
   denyUrl = 'http://localhost:8085/post/deny';
   queryUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
+  closeUrl = 'http://localhost:8085/post/close';
 
   constructor(private postService: PostService,
               private http: HttpClient,
@@ -43,8 +46,15 @@ export class PostContentComponent implements OnInit {
         this.post = data;
         this.getMap();
         if (this.post.statusId.statusId === 1) {
-          this.action = true;
+          this.pending = true;
         }
+        else if (this.post.statusId.statusId === 2){
+          this.active = true;
+        }
+        if (this.post.postEmail === this.user.email){
+          this.owner = true;
+        }
+
       }, ((error) => {
         console.log(error);
       }));
@@ -78,6 +88,19 @@ export class PostContentComponent implements OnInit {
       .subscribe(() => {
         console.log('denied');
         this.router.navigate([('pendingPost')]);
+      }, (err) => {
+        console.error(err);
+      });
+  }
+
+  update() {
+
+  }
+  close() {
+    this.http.post(this.closeUrl, this.id, {responseType: 'text', withCredentials: true})
+      .subscribe(() => {
+        console.log('closed');
+        this.router.navigate([('postHistory')])
       }, (err) => {
         console.error(err);
       });

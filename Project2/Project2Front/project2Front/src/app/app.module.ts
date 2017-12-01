@@ -23,11 +23,14 @@ import { PendingPostComponent } from './pending-post/pending-post.component';
 import {PostService} from './post.service';
 import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCheckboxModule, MatGridListModule, MatNativeDateModule, MatSort, MatSortModule,
   MatTableModule
 } from '@angular/material';
+import { NewPostComponent } from './new-post/new-post.component';
+import { HomeGoodsComponent } from './home-goods/home-goods.component';
+import { HomeSearchComponent } from './home-search/home-search.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import {
     NewSellPostComponent,
     SuccessMessageComponent,
     PostContentComponent,
-    PendingPostComponent
+    PendingPostComponent,
+    NewPostComponent,
+    HomeGoodsComponent,
+    HomeSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,13 @@ import {
     MatGridListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMSGyrfPdWSOIqX7gWkY3Q35JM-ED-2ok'
-    })
+    }),
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatTableModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent]

@@ -1,7 +1,8 @@
 <app-nav-bar></app-nav-bar>
 
 
-<div class="container" *ngIf="post" style="overflow: auto;">
+
+<div class="container col-md-10 col-md-offset-1" *ngIf="post" style="overflow: auto;">
   <div class="row">
     <div class="col-xs-4 item-photo">
       <img style="max-width:100%;"
@@ -11,8 +12,9 @@
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
+
     </div>
-    <div class="col-xs-6 col-xs-offset-2" style="border:0px solid gray">
+    <div class="col-xs-6 col-xs-offset-1" style="border:0px solid gray">
       <h3>{{post.title}}</h3>
       <br>
       <label>Post Type:</label>
@@ -30,11 +32,16 @@
         <p>{{post.description}}</p>
       </fieldset>
       <br>
-      <div class="container-fluid" *ngIf="(action && admin)">
-        <button class="btn-success col-md-3 " (click)="approve()">Approve</button>
-        <button class="btn-success col-md-2 col-md-offset-1" (click)="deny()">Deny</button>
+      <div class="container-fluid" *ngIf="(pending && admin)">
+        <button class="btn btn-success col-md-3 " (click)="approve()">Approve</button>
+        <button class="btn btn-warning col-md-2 col-md-offset-1" (click)="deny()">Deny</button>
+      </div>
+      <div id="post-action" class="container-fluid" *ngIf="(active)">
+        <button type="button" class="btn btn-primary centered" (click)="update()" style="margin-right: 24px" *ngIf="(pending)">Update</button>
+        <button type="button" class="btn btn-danger centered" (click)="close()" *ngIf="(owner || admin)">Close the Post</button>
       </div>
     </div>
+
   </div>
 </div>
 

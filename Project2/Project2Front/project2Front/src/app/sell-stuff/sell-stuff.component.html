@@ -5,18 +5,30 @@
 
 <div class="container col-sm-2">
   <li style="list-style-type: none;">
-    <ul class="btn btn-primary" (click)="newSellPost()">Make New Selling Post</ul>
+    <ul class="btn btn-primary" (click)="newSellPost()">Post Yours!</ul>
   </li>
 </div>
 
 <div class="container col-md-10 pull-right">
-  <table class="table table-striped">
+  <table id="sale-post-table" class="table table-striped">
+    <thead>
     <tr>
-      <th>Date</th>
       <th>Title</th>
-      <th>Seller</th>
-      <th>Zip Code</th>
+      <th>Wanted By</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Post Date</th>
     </tr>
+    </thead>
+    <tbody id="want-post-tbody" >
+    <tr *ngFor="let salePost of salePosts">
+      <td class="btn" style="text-decoration: underline; color: blue;" (click)="viewPost(salePost.postId)">{{salePost.title}}</td>
+      <td>{{salePost.postEmail}}</td>
+      <td>{{salePost.typeId.type}}</td>
+      <td>{{salePost.statusId.status}}</td>
+      <td>{{salePost.postDate | date: "medium"}}</td>
+    </tr>
+    </tbody>
   </table>
 </div>
 
