@@ -3,6 +3,15 @@
 <div class="container col-md-12 transparent-bgd">
   <div class="container col-md-3" style="padding: 2%;">
     <h4 style="padding-top: 4%">Filters: </h4><br>
+
+    <div class="row form-inline">
+      <label class="col-md-1">Type:</label>
+      <select id="post-type-select" class="form-control col-md-2 col-md-offset-1" ([ngModel])="filterType" required>
+        <option value="3" selected="selected">All</option>
+        <option value="1">Sale</option>
+        <option value="2">Want</option>
+      </select>
+    </div>
     <div class="row form-inline">
       <label class="col-md-1">City: </label>
       <input type="text" class="form-control col-md-2 col-md-offset-1" name="city-filter" placeholder="city">
@@ -18,12 +27,10 @@
     </div>
 
 
-    <div class="row form-inline">
-    </div>
-    <button class="btn btn-primary" type="button">Apply</button>
+    <button class="btn btn-primary col-md-offset-6" type="button">Apply</button>
 
   </div>
-  <div class="container col-md-9">
+  <div class="container col-md-9" style="margin-bottom: 2%">
     <div class="row" style="padding-top: 1%">
       <div class="input-group col-md-6 col-md-offset-1" >
         <input type="text" class="form-control" placeholder="Search for...">
