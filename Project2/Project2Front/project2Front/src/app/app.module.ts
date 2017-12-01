@@ -26,6 +26,7 @@ import {PostService} from './post.service';
 import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
 import { NewPostComponent } from './new-post/new-post.component';
+import { HomeGoodsComponent } from './home-goods/home-goods.component';
 
 
 
@@ -49,7 +50,8 @@ import { NewPostComponent } from './new-post/new-post.component';
     SuccessMessageComponent,
     PostContentComponent,
     PendingPostComponent,
-    NewPostComponent
+    NewPostComponent,
+    HomeGoodsComponent
   ],
   imports: [
     BrowserModule,
