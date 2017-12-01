@@ -110,7 +110,7 @@ export class PostContentComponent implements OnInit {
     this.queryUrl = this.queryUrl + this.post.zip;
     this.http.get(this.queryUrl)
       .subscribe((data) => {
-        // this.data = data.results[0].geometry.bounds;
+        this.data = (data as any).results[0].geometry.bounds;
         this.lat = (this.data.northeast.lat + this.data.southwest.lat) / 2;
         this.lng = (this.data.northeast.lng + this.data.southwest.lng) / 2;
       });
