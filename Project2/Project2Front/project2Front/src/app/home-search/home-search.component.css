@@ -19,3 +19,7 @@
 mat-grid-tile {
   background: whitesmoke;
 }
+
+div .form-inline{
+  padding-bottom: 2%;
+}
