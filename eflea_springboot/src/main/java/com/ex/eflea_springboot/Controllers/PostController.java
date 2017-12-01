@@ -69,6 +69,40 @@ public class PostController {
         this.imageService = imageService;
     }
 
+    @GetMapping(path = "/wantPost", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Post>> getWantPost(HttpServletRequest req) {
+        Session account = (Session)req.getSession().getAttribute("account");
+        if(account == null){
+            return new ResponseEntity<List<Post>>(HttpStatus.UNAUTHORIZED);
+        }
+        List<Post> wantPosts = null;
+        try {
+            Type want = new Type(Type.WANT, Type.TYPE_WANT);
+            Status active = new Status(Status.ACTIVE, Status.STATUS_ACTIVE);
+            wantPosts = postService.getPostByStatusAndType(active, want);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity<List<Post>>(wantPosts, HttpStatus.OK);
+    }
+    @GetMapping(path = "/salePost", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Post>> getSalePost(HttpServletRequest req) {
+        Session account = (Session)req.getSession().getAttribute("account");
+        if(account == null){
+            return new ResponseEntity<List<Post>>(HttpStatus.UNAUTHORIZED);
+        }
+        List<Post> salePosts = null;
+        try {
+            Type sale = new Type(Type.SALE, Type.TYPE_SALE);
+            Status active = new Status(Status.ACTIVE, Status.STATUS_ACTIVE);
+            salePosts = postService.getPostByStatusAndType(active, sale);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity<List<Post>>(salePosts, HttpStatus.OK);
+    }
 
     @GetMapping(path = "/postHistory", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -143,6 +177,17 @@ public class PostController {
         }
         return new ResponseEntity(HttpStatus.OK);
     }
+    @PostMapping(path = "/close", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity closeAction(@RequestBody Long id) {
+        try {
+            logger.info("now in closeAction()");
+            postService.closePostById(id);
+        } catch(Exception e) {
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
     @RequestMapping(path = "/new", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
         MediaType.APPLICATION_XML_VALUE})
@@ -154,8 +199,8 @@ public class PostController {
             Status status = new Status();
             status.setStatus(Status.STATUS_PENDING);
             status.setStatusId(Status.PENDING);
-            type.setTypeId(Type.WANT);
-            type.setType(Type.TYPE_WANT);
+            type.setTypeId(jsonPost.typeId);
+            type.setType(jsonPost.typeId==1?Type.TYPE_SALE:Type.TYPE_WANT);
 
             Post post = new Post();
             post.setTitle(jsonPost.title);
