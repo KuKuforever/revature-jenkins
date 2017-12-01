@@ -14,11 +14,13 @@ import {SuccessMessageComponent} from './success-message/success-message.compone
 import {PendingPostComponent} from './pending-post/pending-post.component';
 import {PostContentComponent} from './post-content/post-content.component';
 import {NewPostComponent} from "./new-post/new-post.component";
+import {HomeGoodsComponent} from "./home-goods/home-goods.component";
+import {HomeSearchComponent} from "./home-search/home-search.component";
 
 const appRoutes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeSearchComponent
   },
   {
     path: '',

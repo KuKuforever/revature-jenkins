@@ -27,6 +27,7 @@ import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
 import { NewPostComponent } from './new-post/new-post.component';
 import { HomeGoodsComponent } from './home-goods/home-goods.component';
+import { HomeSearchComponent } from './home-search/home-search.component';
 
 
 
@@ -51,7 +52,8 @@ import { HomeGoodsComponent } from './home-goods/home-goods.component';
     PostContentComponent,
     PendingPostComponent,
     NewPostComponent,
-    HomeGoodsComponent
+    HomeGoodsComponent,
+    HomeSearchComponent
   ],
   imports: [
     BrowserModule,
