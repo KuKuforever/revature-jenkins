@@ -6,7 +6,9 @@ import com.ex.eflea_springboot.services.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -80,8 +82,12 @@ public class AccountController {
 
     @RequestMapping(path= "/verify", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Session verify(HttpServletRequest req) {
-        return (Session)req.getSession().getAttribute("account");
+    public ResponseEntity<Session> verify(HttpServletRequest req) {
+        Session user = (Session)req.getSession().getAttribute("account");
+        if(user == null) {
+            return new ResponseEntity<Session>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Session>(user, HttpStatus.OK);
     }
 
 

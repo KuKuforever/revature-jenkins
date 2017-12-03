@@ -15,6 +15,7 @@ import {PendingPostComponent} from './pending-post/pending-post.component';
 import {PostContentComponent} from './post-content/post-content.component';
 import {NewPostComponent} from './new-post/new-post.component';
 import {HomeSearchComponent} from './home-search/home-search.component';
+import {UserAuthGuard} from './user-auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -31,31 +32,38 @@ const appRoutes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'postHistory',
-    component: PostHistoryComponent
+    component: PostHistoryComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'buy',
-    component: BuyStuffComponent
+    component: BuyStuffComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'sell',
-    component: SellStuffComponent
+    component: SellStuffComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'updateInfo',
-    component: UpdateInfoComponent
+    component: UpdateInfoComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'newBuyPost',
-    component: NewBuyPostComponent
+    component: NewBuyPostComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'newSellPost',
-    component: NewSellPostComponent
+    component: NewSellPostComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'success',
@@ -63,22 +71,25 @@ const appRoutes: Routes = [
   },
   {
     path: 'pendingPost',
-    component: PendingPostComponent
+    component: PendingPostComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'viewPost',
-    component: PostContentComponent
+    component: PostContentComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'newPost',
-    component: NewPostComponent
+    component: NewPostComponent,
+    canActivate: [UserAuthGuard]
   }
 ];
 
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   exports: [
     RouterModule
