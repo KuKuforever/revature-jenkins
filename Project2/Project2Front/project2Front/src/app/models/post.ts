@@ -14,5 +14,5 @@ export class Post {
   postDate: string;
   postId: number;
   imgUrl: string;
-  images: any;
+  imageList: Image[];
 }

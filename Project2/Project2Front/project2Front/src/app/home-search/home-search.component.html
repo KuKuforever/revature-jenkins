@@ -42,15 +42,15 @@
 
     <div class="row" style="padding: 2%">
       <mat-grid-list cols="5" rowHeight="1:1">
-        <mat-grid-tile>1</mat-grid-tile>
+        <!--<mat-grid-tile>1</mat-grid-tile>
         <mat-grid-tile>2</mat-grid-tile>
         <mat-grid-tile>3</mat-grid-tile>
         <mat-grid-tile>4</mat-grid-tile>
         <mat-grid-tile>1</mat-grid-tile>
         <mat-grid-tile>2</mat-grid-tile>
         <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-        <mat-grid-tile *ngFor="let post of posts | paginate: {itemsPerPage:30, currentPage: p}">
+        <mat-grid-tile>4</mat-grid-tile>-->
+        <mat-grid-tile *ngFor="let post of posts | paginate: {itemsPerPage:20, currentPage: p}">
           {{post.imgUrl}}
           {{post.title}}
         </mat-grid-tile>

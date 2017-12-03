@@ -23,7 +23,7 @@ public class Post {
     private String zip;
     private String description;
 
-    private List<Image> images;
+    private List<Image> imageList;
 
     @Id
     @Column(name="POSTID")
@@ -36,14 +36,12 @@ public class Post {
     public void setPostId(long postId) {
         this.postId = postId;
     }
-
-
-    @JsonIgnore
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    public List<Image> getImages() {return images;}
+    public List<Image> getImageList() {return imageList;}
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
     }
 
     @Column(name="POSTEMAIL")
@@ -177,7 +175,7 @@ public class Post {
                 ", country='" + country + '\'' +
                 ", zip='" + zip + '\'' +
                 ", description='" + description + '\'' +
-                ", images=" + images +
+                ", imageList=" + imageList +
                 '}';
     }
 }
