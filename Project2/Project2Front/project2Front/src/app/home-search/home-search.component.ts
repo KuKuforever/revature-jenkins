@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Post} from '../models/post';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
+import {User} from "../models/user";
 
 @Component({
   selector: 'app-home-search',
@@ -9,16 +12,21 @@ import {Post} from '../models/post';
 })
 export class HomeSearchComponent implements OnInit {
   posts: Post[];
-  filterType  = 'All';
+  user: User;
+  filterType = 'All';
   filterTitle = null;
-  url = 'http://localhost:8085/post/filteredPosts';
-  constructor(private http: HttpClient) { }
+  url = 'http://localhost:8085/post/filteredPosts'
+  verifyUrl = 'http://localhost:8085/account/verify';
+
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) {
+  }
 
   ngOnInit() {
+    this.getProfile();
   }
 
   search() {
-    let filter = {
+    const filter = {
       filterType: this.filterType,
       filterTitle: this.filterTitle
     };
@@ -36,4 +44,16 @@ export class HomeSearchComponent implements OnInit {
     this.filterType = evt.target.value;
     console.log(this.filterType);
   }
+
+  getProfile() {
+    this.http.get<User>(this.verifyUrl, {withCredentials: true})
+      .subscribe((data) => {
+        this.user = data;
+        this.userService.getLoggedIn();
+        }, () => {
+          this.router.navigate([('')]);
+        }
+      );
+  }
 }
+
