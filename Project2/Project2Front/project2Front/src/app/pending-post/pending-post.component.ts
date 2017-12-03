@@ -4,7 +4,7 @@ import {Post} from '../models/post';
 import {PostService} from '../post.service';
 import {Router} from '@angular/router';
 import {User} from '../models/user';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-pending-post',
@@ -22,6 +22,7 @@ export class PendingPostComponent implements OnInit, AfterViewInit {
   dataSource1 = new MatTableDataSource(this.posts);
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -34,6 +35,7 @@ export class PendingPostComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource1  = new MatTableDataSource(this.posts);
+    this.dataSource1.paginator = this.paginator;
     this.dataSource1.sort = this.sort;
     this.dataSource1  = new MatTableDataSource(this.posts);
   }
@@ -44,6 +46,8 @@ export class PendingPostComponent implements OnInit, AfterViewInit {
         this.posts = data;
         console.log(this.posts);
         this.dataSource1  = new MatTableDataSource(this.posts);
+
+        this.dataSource1.paginator = this.paginator;
         this.dataSource1.sort = this.sort;
       }, (err) => {
         console.error(err);
@@ -69,4 +73,11 @@ export class PendingPostComponent implements OnInit, AfterViewInit {
         this.router.navigate([('')]);
       });
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource1.filter = filterValue;
+  }
+
 }

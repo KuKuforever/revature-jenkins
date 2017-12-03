@@ -24,8 +24,22 @@ import {PostService} from './post.service';
 import {CommonModule} from '@angular/common';
 import {AgmCoreModule} from '@agm/core';
 import {
-  MatButtonModule, MatCheckboxModule, MatGridListModule, MatNativeDateModule, MatSort, MatSortModule,
-  MatTableModule
+  MatAutocompleteModule,
+  MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule, MatInputModule, MatListModule, MatMenuModule,
+  MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
+  MatRippleModule, MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSort,
+  MatSortModule, MatStepperModule,
+  MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { NewPostComponent } from './new-post/new-post.component';
 import { HomeSearchComponent } from './home-search/home-search.component';
@@ -77,7 +91,33 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatButtonModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatStepperModule,
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
