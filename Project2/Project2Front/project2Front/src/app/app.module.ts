@@ -29,7 +29,7 @@ import {
 } from '@angular/material';
 import { NewPostComponent } from './new-post/new-post.component';
 import { HomeSearchComponent } from './home-search/home-search.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
