@@ -21,14 +21,14 @@ public class AccountController {
     private AccountService accountService;
     private static Logger logger = LoggerFactory.getLogger(AccountController.class);
 
-    public static class LoginAccount {
+    static class LoginAccount {
         public String email;
         public String password;
 
         public LoginAccount() {}
     }
 
-    public static class User {
+    static class User {
         public String email;
         public String password;
         public String phone;
@@ -101,7 +101,10 @@ public class AccountController {
     @RequestMapping(path = "/update", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
     public void update(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
-        logger.info("in update() from AccountController");
+        if((Session)req.getSession().getAttribute("account") == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
         try{
             Account account = accountService.updateProfile(user.email, user.phone, user.username);
             Session updated = new Session();
