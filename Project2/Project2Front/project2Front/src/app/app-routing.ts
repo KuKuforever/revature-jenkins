@@ -13,9 +13,8 @@ import {NewSellPostComponent} from './new-sell-post/new-sell-post.component';
 import {SuccessMessageComponent} from './success-message/success-message.component';
 import {PendingPostComponent} from './pending-post/pending-post.component';
 import {PostContentComponent} from './post-content/post-content.component';
-import {NewPostComponent} from "./new-post/new-post.component";
-import {HomeGoodsComponent} from "./home-goods/home-goods.component";
-import {HomeSearchComponent} from "./home-search/home-search.component";
+import {NewPostComponent} from './new-post/new-post.component';
+import {HomeSearchComponent} from './home-search/home-search.component';
 
 const appRoutes: Routes = [
   {

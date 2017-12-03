@@ -1,3 +1,5 @@
+import {Image} from "./image";
+
 export class Post {
 
   title:  string;
@@ -12,4 +14,5 @@ export class Post {
   postDate: string;
   postId: number;
   imgUrl: string;
+  images: any;
 }

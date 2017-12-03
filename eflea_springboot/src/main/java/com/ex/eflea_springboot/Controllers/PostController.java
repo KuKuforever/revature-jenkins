@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -67,6 +68,23 @@ public class PostController {
     public PostController(PostService postService, ImageService imageService){
         this.postService = postService;
         this.imageService = imageService;
+    }
+
+    @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Post>> getAllPost(HttpServletRequest req) {
+        Session account = (Session)req.getSession().getAttribute("account");
+        if(account == null) {
+            return new ResponseEntity<List<Post>>(HttpStatus.UNAUTHORIZED);
+        }
+        List<Post> posts = null;
+        try{
+            posts = postService.getAll();
+            logger.info(posts.toString());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
     }
 
     @GetMapping(path = "/wantPost", produces = MediaType.APPLICATION_JSON_VALUE)

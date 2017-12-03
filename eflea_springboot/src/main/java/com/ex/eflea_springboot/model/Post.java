@@ -1,10 +1,12 @@
 package com.ex.eflea_springboot.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="EFLEA_POST")
@@ -21,6 +23,8 @@ public class Post {
     private String zip;
     private String description;
 
+    private List<Image> images;
+
     @Id
     @Column(name="POSTID")
     @GenericGenerator(name="postIdGen", strategy = "increment")
@@ -31,6 +35,15 @@ public class Post {
 
     public void setPostId(long postId) {
         this.postId = postId;
+    }
+
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    public List<Image> getImages() {return images;}
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     @Column(name="POSTEMAIL")
@@ -164,6 +177,7 @@ public class Post {
                 ", country='" + country + '\'' +
                 ", zip='" + zip + '\'' +
                 ", description='" + description + '\'' +
+                ", images=" + images +
                 '}';
     }
 }
