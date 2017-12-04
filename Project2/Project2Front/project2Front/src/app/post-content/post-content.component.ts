@@ -47,11 +47,11 @@ export class PostContentComponent implements OnInit {
         this.getMap();
         if (this.post.statusId.statusId === 1) {
           this.pending = true;
-        }
-        else if (this.post.statusId.statusId === 2){
+        } else if (this.post.statusId.statusId === 2) {
           this.active = true;
         }
-        if (this.post.postEmail === this.user.email){
+
+        if (this.post.postEmail === this.user.email) {
           this.owner = true;
         }
 
@@ -100,7 +100,7 @@ export class PostContentComponent implements OnInit {
     this.http.post(this.closeUrl, this.id, {responseType: 'text', withCredentials: true})
       .subscribe(() => {
         console.log('closed');
-        this.router.navigate([('postHistory')])
+        this.router.navigate([('postHistory')]);
       }, (err) => {
         console.error(err);
       });

@@ -6,6 +6,11 @@
   <h4 align="center">My Post History</h4>
   <legend class="col-sm-12"></legend>
 
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
 
   <div class="container col-md-12">
     <mat-table #table="matSort" [dataSource]="dataSource1" matSort>
@@ -42,5 +47,10 @@
       <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
     </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
   </div>
 </div>
