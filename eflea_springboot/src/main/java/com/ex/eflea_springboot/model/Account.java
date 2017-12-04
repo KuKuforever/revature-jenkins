@@ -14,6 +14,17 @@ public class Account {
     private Date createDate;
     private String phone;
 
+    public Account(){}
+
+    public Account(String email, String password, String username, int titleId, Date createDate, String phone) {
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.titleId = titleId;
+        this.createDate = createDate;
+        this.phone = phone;
+    }
+
     @Id
     @Column
     public String getEmail() {

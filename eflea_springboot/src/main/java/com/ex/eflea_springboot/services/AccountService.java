@@ -38,17 +38,12 @@ public class AccountService {
         return user;
     }
 
-    public void register(String email, String password, String phone, String username) throws Exception {
-        if(email == null || password == null || username == null) {
+    public void register(Account account) throws Exception {
+        if(account.getEmail() == null || account.getPassword() == null
+                || account.getUsername() == null) {
             throw new Exception("invalid data, can not register");
         }
 
-        Account account = new Account();
-        account.setEmail(email);
-        account.setPassword(password);
-        account.setPhone(phone);
-        account.setUsername(username);
-        account.setTitleId(2);
         accountDao.save(account);
 
     }
