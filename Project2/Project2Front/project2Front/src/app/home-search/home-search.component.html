@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container col-md-12 transparent-bgd">
-  <div class="container col-md-3" style="padding: 2%;">
+  <div class="container col-md-3">
     <h4 style="padding-top: 4%">Filters: </h4><br>
 
     <div class="row form-inline">
@@ -73,8 +73,13 @@
         <mat-grid-tile>2</mat-grid-tile>
         <mat-grid-tile>3</mat-grid-tile>
         <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile *ngFor="let post of posts | paginate: {itemsPerPage:30, currentPage: p}"></mat-grid-tile>
       </mat-grid-list>
     </div>
+    <div class="row">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
   </div>
 </div>
 

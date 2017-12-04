@@ -46,6 +46,8 @@ import { HomeSearchComponent } from './home-search/home-search.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserAuthGuard} from "./user-auth.guard";
 import {UserService} from "./user.service";
+import {NgxPaginationModule} from "ngx-pagination";
+
 
 
 @NgModule({
@@ -120,6 +122,7 @@ import {UserService} from "./user.service";
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
+    NgxPaginationModule
   ],
   providers: [PostService, UserAuthGuard, UserService],
   bootstrap: [AppComponent]
