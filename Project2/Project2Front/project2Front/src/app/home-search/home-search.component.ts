@@ -22,6 +22,7 @@ export class HomeSearchComponent implements OnInit {
   verifyUrl = 'http://localhost:8085/account/verify';
   post: Post = new Post();
   allPostUrl = 'http://localhost:8085/post/all';
+  defaultImgUrl = '../../assets/img/nyanko06.png';
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -45,7 +46,7 @@ export class HomeSearchComponent implements OnInit {
           if (post.imageList.length > 0 ) {
             post.imgUrl = post.imageList[0].url;
           } else {
-            post.imgUrl = '../../assets/img/nyanko06.png';
+            post.imgUrl = this.defaultImgUrl;
           }
         });
       }, (err) => {
@@ -63,6 +64,13 @@ export class HomeSearchComponent implements OnInit {
       .subscribe((data) => {
         console.error(this.filterType);
         this.posts = data;
+        this.posts.forEach((post) => {
+          if (post.imageList.length > 0 ) {
+            post.imgUrl = post.imageList[0].url;
+          } else {
+            post.imgUrl = this.defaultImgUrl;
+          }
+        });
         console.log(this.posts);
       }, (err) => {
         console.error(err);
