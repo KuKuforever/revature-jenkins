@@ -45,7 +45,7 @@ export class HomeSearchComponent implements OnInit {
           if (post.imageList.length > 0 ) {
             post.imgUrl = post.imageList[0].url;
           } else {
-            post.imgUrl = '../../assets/img/nyanko01.png';
+            post.imgUrl = '../../assets/img/nyanko06.png';
           }
         });
       }, (err) => {
