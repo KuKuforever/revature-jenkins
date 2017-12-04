@@ -5,6 +5,7 @@ import {Post} from '../models/post';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
 import {User} from "../models/user";
+import {PostService} from "../post.service";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class HomeSearchComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private postService: PostService, 
+              private postService: PostService,
               private userService: UserService) { }
 
 
@@ -52,7 +53,7 @@ export class HomeSearchComponent implements OnInit {
         }
       );
   }
-    
+
   search() {
     const filter = {
       filterType: this.filterType,
