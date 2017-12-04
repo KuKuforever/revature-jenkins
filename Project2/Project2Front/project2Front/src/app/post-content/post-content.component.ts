@@ -29,6 +29,7 @@ export class PostContentComponent implements OnInit {
   denyUrl = 'http://localhost:8085/post/deny';
   queryUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
   closeUrl = 'http://localhost:8085/post/close';
+  imageUrl = '../../assets/img/nyanko06.png';
 
   constructor(private postService: PostService,
               private http: HttpClient,
@@ -44,6 +45,11 @@ export class PostContentComponent implements OnInit {
     this.http.post<Post>(this.url, this.id, {withCredentials: true})
       .subscribe((data) => {
         this.post = data;
+        if (this.post.imageList.length > 0 ) {
+          this.post.imgUrl = this.post.imageList[0].url;
+        } else {
+          this.post.imgUrl = this.imageUrl;
+        }
         this.getMap();
         if (this.post.statusId.statusId === 1) {
           this.pending = true;

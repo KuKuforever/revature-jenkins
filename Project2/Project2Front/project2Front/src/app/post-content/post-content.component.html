@@ -2,11 +2,11 @@
 
 
 
-<div class="container col-md-10 col-md-offset-1" *ngIf="post" style="overflow: auto;">
+<div class="container col-md-10 col-md-offset-1 transparent-bgd" *ngIf="post" style="overflow: auto;">
   <div class="row">
     <div class="col-xs-4 item-photo">
-      <img style="max-width:100%;"
-           src="https://static.boredpanda.com/blog/wp-content/uploads/2016/01/bear-dogs-310__605.jpg" />
+      <img  class="img-responsive img-rounded" style="max-width:100%;"
+           src="{{post.imgUrl}}" />
       <br>
       <br>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">

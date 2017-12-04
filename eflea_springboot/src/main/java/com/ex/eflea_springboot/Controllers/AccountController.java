@@ -2,6 +2,7 @@ package com.ex.eflea_springboot.Controllers;
 
 import com.ex.eflea_springboot.helpers.Session;
 import com.ex.eflea_springboot.model.Account;
+import com.ex.eflea_springboot.model.Title;
 import com.ex.eflea_springboot.services.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -95,7 +97,9 @@ public class AccountController {
             MediaType.APPLICATION_XML_VALUE})
     public void register(@RequestBody User user, HttpServletResponse resp) {
         try{
-            accountService.register(user.email, user.password, user.username, user.phone);
+            Account account = new Account(user.email, user.password, user.username,
+                    Title.USER,new Date(),user.phone);
+            accountService.register(account);
             resp.setStatus(HttpServletResponse.SC_OK);
 
         } catch(Exception e) {

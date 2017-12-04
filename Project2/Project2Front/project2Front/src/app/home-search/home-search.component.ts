@@ -40,7 +40,7 @@ export class HomeSearchComponent implements OnInit {
       .subscribe((data) => {
         this.posts = data;
         console.log(this.posts);
-        console.log(this.posts[18].imageList[0].url);
+
         this.posts.forEach((post) => {
           if (post.imageList.length > 0 ) {
             post.imgUrl = post.imageList[0].url;
@@ -83,6 +83,12 @@ export class HomeSearchComponent implements OnInit {
           this.router.navigate([('')]);
         }
       );
+  }
+
+  viewPost(postId) {
+    console.log(postId);
+    this.postService.changePostId(postId);
+    this.router.navigate([('viewPost')]);
   }
 }
 
