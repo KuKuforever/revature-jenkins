@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
    username;
    phone = null;
    url = 'http://localhost:8085/account/register';
-   err = 'The email you are using is already exist.'
+   err = 'The email you are using is already exist.';
 
   constructor(private router: Router, private fb: FormBuilder, private http: HttpClient) {
     this.form = fb.group({
@@ -31,7 +31,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    let newUser = {'email': this.email, 'password': this.password, 'username': this.username, 'phone': this.phone};
+     if (this.phone == null) {
+       this.phone = 'not available';
+     }
+
+    const newUser = {'email': this.email, 'password': this.password, 'username': this.username, 'phone': this.phone};
     this.http.post(this.url, newUser, {responseType: 'text', withCredentials: false})
       .subscribe((data) => {
         this.router.navigate([('success')]);
