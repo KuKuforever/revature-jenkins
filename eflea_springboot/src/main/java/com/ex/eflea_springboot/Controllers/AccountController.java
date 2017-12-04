@@ -6,7 +6,9 @@ import com.ex.eflea_springboot.services.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,14 +23,14 @@ public class AccountController {
     private AccountService accountService;
     private static Logger logger = LoggerFactory.getLogger(AccountController.class);
 
-    public static class LoginAccount {
+    static class LoginAccount {
         public String email;
         public String password;
 
         public LoginAccount() {}
     }
 
-    public static class User {
+    static class User {
         public String email;
         public String password;
         public String phone;
@@ -80,8 +82,12 @@ public class AccountController {
 
     @RequestMapping(path= "/verify", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Session verify(HttpServletRequest req) {
-        return (Session)req.getSession().getAttribute("account");
+    public ResponseEntity<Session> verify(HttpServletRequest req) {
+        Session user = (Session)req.getSession().getAttribute("account");
+        if(user == null) {
+            return new ResponseEntity<Session>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Session>(user, HttpStatus.OK);
     }
 
 
@@ -101,7 +107,10 @@ public class AccountController {
     @RequestMapping(path = "/update", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
     public void update(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
-        logger.info("in update() from AccountController");
+        if((Session)req.getSession().getAttribute("account") == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
         try{
             Account account = accountService.updateProfile(user.email, user.phone, user.username);
             Session updated = new Session();

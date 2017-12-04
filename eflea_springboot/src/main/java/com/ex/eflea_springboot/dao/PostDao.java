@@ -18,4 +18,7 @@ public interface PostDao extends JpaRepository<Post, Serializable> {
 
     //@Query("SELECT * FROM EFLEA_POST WHERE STATUSID = 2 AND TYPEID = ?1")
     List<Post> findByStatusIdAndTypeId(Status status, Type type);
+    List<Post> findByTitleIgnoreCaseContainingAndStatusId(String title, Status status);
+
+    List<Post> findByTitleIgnoreCaseContainingAndTypeIdAndStatusId(String title, Type type, Status status);
 }
