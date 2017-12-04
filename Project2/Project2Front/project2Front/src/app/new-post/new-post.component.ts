@@ -53,6 +53,7 @@ export class NewPostComponent implements OnInit {
     this.postObj.zip = this.zip;
     this.postObj.description = this.description;
     this.postObj.typeId = this.selectType;
+    this.postObj.country = 'United States';
     console.log(this.postObj);
     if (this.imgFile == null) {
       this.http.post(this.postUrl, this.postObj, {responseType: 'text', withCredentials: true})

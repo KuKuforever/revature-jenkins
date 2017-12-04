@@ -62,6 +62,23 @@ public class PostController {
         this.imageService = imageService;
     }
 
+    @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Post>> getAllPost(HttpServletRequest req) {
+        Session account = (Session)req.getSession().getAttribute("account");
+        if(account == null) {
+            return new ResponseEntity<List<Post>>(HttpStatus.UNAUTHORIZED);
+        }
+        List<Post> posts = null;
+        try{
+            posts = postService.getAll();
+            logger.info(posts.toString());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/wantPost", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<List<Post>> getWantPost(HttpServletRequest req) {

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
 import {HttpClient} from '@angular/common/http';
 import {Post} from '../models/post';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
 import {User} from "../models/user";
+import {PostService} from "../post.service";
+
 
 @Component({
   selector: 'app-home-search',
@@ -17,12 +20,38 @@ export class HomeSearchComponent implements OnInit {
   filterTitle = null;
   url = 'http://localhost:8085/post/filteredPosts'
   verifyUrl = 'http://localhost:8085/account/verify';
+  post: Post = new Post();
+  allPostUrl = 'http://localhost:8085/post/all';
 
-  constructor(private http: HttpClient, private router: Router, private userService: UserService) {
-  }
+  constructor(private http: HttpClient,
+              private router: Router,
+              private postService: PostService,
+              private userService: UserService) { }
+
 
   ngOnInit() {
     this.getProfile();
+    this.getAllPost();
+  }
+
+
+  getAllPost() {
+    this.http.get<Post[]>(this.allPostUrl, {withCredentials: true})
+      .subscribe((data) => {
+        this.posts = data;
+        console.log(this.posts);
+        console.log(this.posts[18].imageList[0].url);
+        this.posts.forEach((post) => {
+          if (post.imageList.length > 0 ) {
+            post.imgUrl = post.imageList[0].url;
+          } else {
+            post.imgUrl = '../../assets/img/nyanko01.png';
+          }
+        });
+      }, (err) => {
+        console.log(err);
+        }
+      );
   }
 
   search() {

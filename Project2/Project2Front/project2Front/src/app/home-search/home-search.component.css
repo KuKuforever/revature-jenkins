@@ -17,10 +17,22 @@
   background: #1c1c1c;
   color: #fff;
 }
-mat-grid-tile {
+.mat-grid-tile {
   background: whitesmoke;
 }
 
 div .form-inline{
   padding-bottom: 2%;
+}
+
+.img-container{
+  margin-top: 0px;
+}
+.post-img {
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: top;
+  display: block;
+  height: 140px;
 }

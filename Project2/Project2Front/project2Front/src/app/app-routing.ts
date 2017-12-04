@@ -17,6 +17,7 @@ import {NewPostComponent} from './new-post/new-post.component';
 import {HomeSearchComponent} from './home-search/home-search.component';
 import {UserAuthGuard} from './user-auth.guard';
 
+
 const appRoutes: Routes = [
   {
     path: 'home',

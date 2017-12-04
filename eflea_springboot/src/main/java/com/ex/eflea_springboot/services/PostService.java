@@ -20,6 +20,10 @@ public class PostService {
         this.postDao = postDao;
     }
 
+    public List<Post> getAll() throws Exception {
+        return postDao.findAll();
+    }
+
     public List<Post> getPosts(String email) throws Exception {
         if(email == null){
             throw new Exception("Undefined Email");
