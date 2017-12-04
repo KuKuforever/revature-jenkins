@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from "../user.service";
+import {User} from "../models/user";
 
 
 @Component({
@@ -16,6 +18,9 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   url = 'http://localhost:8085/account/login';
   display = false;
+  user: User;
+  logged = false;
+  verifyUrl = 'http://localhost:8085/account/verify';
 
   constructor(private http: HttpClient, private router: Router,
               private fb: FormBuilder) {
@@ -26,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getProfile();
   }
 
   login() {
@@ -43,4 +49,11 @@ export class LoginComponent implements OnInit {
     this.router.navigate([('register')]);
   }
 
+  getProfile() {
+    this.http.get<User>(this.verifyUrl, {withCredentials: true})
+      .subscribe((data) => {
+          this.router.navigate([('home')]);
+        }
+      );
+  }
 }

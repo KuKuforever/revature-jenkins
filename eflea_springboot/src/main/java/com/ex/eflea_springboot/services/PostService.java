@@ -1,6 +1,5 @@
 package com.ex.eflea_springboot.services;
 
-import com.ex.eflea_springboot.Controllers.AccountController;
 import com.ex.eflea_springboot.dao.PostDao;
 import com.ex.eflea_springboot.model.Post;
 import com.ex.eflea_springboot.model.Status;
@@ -9,10 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -92,5 +87,36 @@ public class PostService {
         return postDao.findByStatusIdAndTypeId(status, type);
     }
 
+    public List<Post> getFilteredPosts(String type, String title) throws Exception {
+        String filterTitle = title;
+        if(type == null){
+            throw new Exception("Invalid searching criterias");
+        }
+        if(filterTitle == null){
+            filterTitle = "";
+        }
+
+        List<Post> posts = null;
+        Status status = new Status();
+        status.setStatus("Active");
+        status.setStatusId(2);
+
+        if(type.equals("All")){
+            posts = postDao.findByTitleIgnoreCaseContainingAndStatusId(filterTitle, status);
+        } else if(type.equals("1")){
+            Type targetType = new Type();
+            targetType.setTypeId(1);
+            targetType.setType("Sale");
+            posts = postDao.findByTitleIgnoreCaseContainingAndTypeIdAndStatusId(filterTitle, targetType, status);
+        } else if (type.equals("2")) {
+            Type targetType = new Type();
+            targetType.setTypeId(2);
+            targetType.setType("Want");
+            posts = postDao.findByTitleIgnoreCaseContainingAndTypeIdAndStatusId(filterTitle, targetType, status);
+        }else {
+            throw new Exception("Invalid type");
+        }
+        return posts;
+    }
 
 }

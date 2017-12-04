@@ -33,7 +33,7 @@ public class PostController {
     private static Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     //static class to hold json object
-    public static class JsonPost{
+     static class JsonPost{
         public String title;
         public String postEmail;
         public int statusId;
@@ -47,22 +47,14 @@ public class PostController {
         public long postId;
         public String imgUrl;
 
-        @Override
-        public String toString() {
-            return "JsonPost{" +
-                    "title='" + title + '\'' +
-                    ", postEmail='" + postEmail + '\'' +
-                    ", statusId=" + statusId +
-                    ", typeId=" + typeId +
-                    ", city='" + city + '\'' +
-                    ", state='" + state + '\'' +
-                    ", country='" + country + '\'' +
-                    ", zip='" + zip + '\'' +
-                    ", description='" + description + '\'' +
-                    ", postDate=" + postDate +
-                    ", postId=" + postId +
-                    '}';
-        }
+        public JsonPost () {}
+    }
+
+    static class Filters {
+         public String filterType;
+         public String filterTitle;
+
+         public Filters() {}
     }
     @Autowired
     public PostController(PostService postService, ImageService imageService){
@@ -209,8 +201,7 @@ public class PostController {
 
     @RequestMapping(path = "/new", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE,
         MediaType.APPLICATION_XML_VALUE})
-    public void newPost(@RequestBody JsonPost jsonPost, HttpServletResponse resp, HttpServletRequest req) {
-        logger.info("In the new Post from PostController");
+    public void newPost(@RequestBody JsonPost jsonPost, HttpServletResponse resp) {
         try {
             logger.info("jsonPost: "+jsonPost.toString());
             Type type = new Type();
@@ -243,7 +234,21 @@ public class PostController {
             logger.error("update error, " + e.getMessage());
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
+    }
 
-
+    @RequestMapping(path = "/filteredPosts", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_XML_VALUE,
+        MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Post>> filteredPosts(@RequestBody Filters filter, HttpServletRequest req) {
+         if((Session)req.getSession().getAttribute("account") == null) {
+             return new ResponseEntity<List<Post>>(HttpStatus.BAD_REQUEST);
+         }
+         try {
+             List<Post> posts = postService.getFilteredPosts(filter.filterType, filter.filterTitle);
+             return new ResponseEntity<>(posts, HttpStatus.OK);
+         }catch (Exception e) {
+             logger.error("Error, " + e.getMessage());
+         }
+        return new ResponseEntity<List<Post>>(HttpStatus.BAD_REQUEST);
     }
 }
