@@ -24,7 +24,7 @@ export class HomeSearchComponent implements OnInit {
   url = 'http://localhost:8085/post/filteredPosts'
   verifyUrl = 'http://localhost:8085/account/verify';
   post: Post = new Post();
-  allPostUrl = 'http://localhost:8085/post/all';
+  activePostUrl = 'http://localhost:8085/post/getActivePost';
   defaultImgUrl = '../../assets/img/nyanko06.png';
 
   constructor(private http: HttpClient,
@@ -32,15 +32,14 @@ export class HomeSearchComponent implements OnInit {
               private postService: PostService,
               private userService: UserService) { }
 
-
   ngOnInit() {
     this.getProfile();
-    this.getAllPost();
+    this.getActivePost();
   }
 
 
-  getAllPost() {
-    this.http.get<Post[]>(this.allPostUrl, {withCredentials: true})
+  getActivePost() {
+    this.http.get<Post[]>(this.activePostUrl, {withCredentials: true})
       .subscribe((data) => {
         this.posts = data;
         console.log(this.posts);

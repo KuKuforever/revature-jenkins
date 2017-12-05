@@ -5,7 +5,7 @@
 <div class="container col-md-10 col-md-offset-1 transparent-bgd" *ngIf="post" style="overflow: auto;">
   <div class="row">
     <div class="col-xs-4 item-photo">
-      <img  class="img-responsive img-rounded" style="max-width:100%;"
+      <img  id="imgView" class="img-responsive img-rounded" (click)="viewImg()" style="max-width:100%;"
            src="{{post.imgUrl}}" />
       <br>
       <br>
@@ -43,6 +43,12 @@
     </div>
 
   </div>
+</div>
+<!-- The Modal -->
+<div id="imgModal" class="modal">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg">
+  <div id="caption"></div>
 </div>
 
 
