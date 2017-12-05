@@ -14,6 +14,9 @@ import {PostService} from "../post.service";
   styleUrls: ['./home-search.component.css']
 })
 export class HomeSearchComponent implements OnInit {
+  city = '';
+  state = '';
+  zip = '';
   posts: Post[];
   user: User;
   filterType = 'All';
