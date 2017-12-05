@@ -47,6 +47,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserAuthGuard} from "./user-auth.guard";
 import {UserService} from "./user.service";
 import {NgxPaginationModule} from "ngx-pagination";
+import {NgPipesModule} from "ngx-pipes";
 
 
 
@@ -73,6 +74,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     HomeSearchComponent
   ],
   imports: [
+    NgPipesModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRouting,
