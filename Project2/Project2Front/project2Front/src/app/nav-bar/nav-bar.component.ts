@@ -54,6 +54,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate([('pendingPost')]);
   }
 
+  newPost() {
+    this.router.navigate([('newPost')]);
+  }
+
   getProfile() {
     this.http.get<User>(this.verifyUrl, {withCredentials: true})
       .subscribe((data) => {
