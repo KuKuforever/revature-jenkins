@@ -6,20 +6,18 @@
 
     <div class="row form-inline">
       <label class="col-md-1">City: </label>
-      <input type="text" class="form-control col-md-2 col-md-offset-1" name="cityFilter" placeholder="city" >
+      <input type="text" class="form-control col-md-2 col-md-offset-1" name="cityFilter" placeholder="city" [(ngModel)]="city" >
     </div>
 
     <div class="row form-inline">
       <label class="col-md-1">State: </label>
-      <input type="text" class="form-control col-md-2 col-md-offset-1" name="stateFilter" placeholder="state" >
+      <input type="text" class="form-control col-md-2 col-md-offset-1" name="stateFilter" placeholder="state" [(ngModel)]="state" >
     </div>
     <div class="row form-inline">
       <label class="col-md-1">Zip: </label>
-      <input type="text" class="form-control col-md-2 col-md-offset-1" name="zipFilter" placeholder="zip">
+      <input type="text" class="form-control col-md-2 col-md-offset-1" name="zipFilter" placeholder="zip" [(ngModel)]="zip">
     </div>
 
-
-    <button class="btn btn-primary col-md-offset-6" type="button" (click)="applyFilters()">Apply</button>
 
   </div>
 
@@ -70,7 +68,7 @@
         <mat-grid-tile>2</mat-grid-tile>
         <mat-grid-tile>3</mat-grid-tile>
         <mat-grid-tile>4</mat-grid-tile>-->
-        <mat-grid-tile *ngFor="let post of posts | paginate: {itemsPerPage:16, currentPage: p}">
+        <mat-grid-tile *ngFor="let post of posts | filterBy: ['city']: city |  filterBy: ['state']: state | filterBy: ['zip']: zip | paginate: {itemsPerPage:16, currentPage: p} ">
           <div class="container col-md-12">
               <div class="row img-container text-center" style="padding: 2%;">
                 <img src="{{post.imgUrl}}" alt="Image Unavailable"  height="100%" class="img-thumbnail img-responsive post-img ">
