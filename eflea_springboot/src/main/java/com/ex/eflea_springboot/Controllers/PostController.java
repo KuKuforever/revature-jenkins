@@ -164,6 +164,21 @@ public class PostController {
         return response;
     }
 
+    @RequestMapping(path = "/getActivePost", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Post>> getActivePost() {
+        ResponseEntity<List<Post>> response = null;
+        try{
+                Status status = new Status(Status.ACTIVE, Status.STATUS_ACTIVE);
+                List<Post> posts = postService.getPostByStatus(status);
+                response = new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
+        } catch(Exception e) {
+            logger.error("error, " + e.getMessage());
+
+        }
+        return response;
+    }
+
     @PostMapping(path = "/approve", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity approveAction(@RequestBody Long id) {

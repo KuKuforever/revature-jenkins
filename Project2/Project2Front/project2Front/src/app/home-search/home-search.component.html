@@ -1,6 +1,8 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container col-md-12 transparent-bgd">
+  <h4 style="text-align: center">Checkout What's Available Online!</h4>
+  <br>
   <div class="container col-md-3">
     <h4 style="padding-top: 4%">Filters: </h4><br>
 
@@ -60,21 +62,13 @@
 
     <div class="row" style="padding: 2%">
       <mat-grid-list cols="4" rowHeight="1:1">
-        <!--<mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>-->
         <mat-grid-tile *ngFor="let post of posts | filterBy: ['city']: city |  filterBy: ['state']: state | filterBy: ['zip']: zip | paginate: {itemsPerPage:16, currentPage: p} ">
           <div class="container col-md-12">
               <div class="row img-container text-center" style="padding: 2%;">
                 <img src="{{post.imgUrl}}" alt="Image Unavailable"  height="100%" class="img-thumbnail img-responsive post-img ">
               </div>
             <div class="row title-container text-center">
-              <span class="btn" style="color: cornflowerblue" (click)="viewPost(post.postId)">{{post.title}}</span>
+              <span class="link clickable-link" (click)="viewPost(post.postId)">{{post.title}}</span>
             </div>
           </div>
         </mat-grid-tile>

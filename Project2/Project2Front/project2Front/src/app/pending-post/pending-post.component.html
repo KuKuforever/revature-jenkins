@@ -24,7 +24,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef mat-sort-header > Title </mat-header-cell>
-        <mat-cell class="btn-link" *matCellDef="let post"  (click)="viewPost(post.postId)"> {{post.title}} </mat-cell>
+        <mat-cell class="btn-link clickable-link" *matCellDef="let post"  (click)="viewPost(post.postId)"> {{post.title}} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->

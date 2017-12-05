@@ -121,4 +121,14 @@ export class PostContentComponent implements OnInit {
         this.lng = (this.data.northeast.lng + this.data.southwest.lng) / 2;
       });
   }
+
+  viewImg() {
+    document.getElementById('imgModal').style.display = 'block';
+    (document.getElementById('modalImg') as any).src = this.post.imgUrl;
+    (document.getElementById('caption')).innerHTML = this.post.title;
+  }
+
+  closeModal() {
+    document.getElementById('imgModal').style.display = 'none';
+  }
 }
