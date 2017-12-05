@@ -75,7 +75,7 @@ export class NewPostComponent implements OnInit {
         this.postObj.imgUrl = link;
         this.http.post(this.postUrl, this.postObj, {responseType: 'text', withCredentials: true})
           .subscribe(() => {
-            if (this.selectType === 2) {
+            if (this.selectType == 2) {
               this.router.navigate([('buy')]);
             } else {
               this.router.navigate([('sell')]);

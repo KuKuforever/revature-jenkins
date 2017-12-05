@@ -43,6 +43,8 @@ export class UpdateInfoComponent implements OnInit {
     this.http.get<User>(this.url, {withCredentials: true})
       .subscribe((data) => {
         this.user = data;
+        this.nickname = this.user.username;
+        this.phone = this.user.phone;
       }, (err) => {
         this.router.navigate([('')]);
       });
