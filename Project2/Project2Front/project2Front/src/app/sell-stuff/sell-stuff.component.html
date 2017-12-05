@@ -11,7 +11,7 @@
 </div>
 
 <div class="container col-md-10 pull-right">
-  <table id="sale-post-table" class="table table-striped">
+  <!--<table id="sale-post-table" class="table table-striped">
     <thead>
     <tr>
       <th>Title</th>
@@ -30,7 +30,54 @@
       <td>{{salePost.postDate | date: "medium"}}</td>
     </tr>
     </tbody>
-  </table>
+  </table>-->
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="container col-md-12">
+    <mat-table #table="matSort" [dataSource]="dataSource1" matSort>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="postId" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Post ID </mat-header-cell>
+        <mat-cell *matCellDef="let post"  > {{post.postId}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Title </mat-header-cell>
+        <mat-cell class="btn-link" *matCellDef="let post"  (click)="viewPost(post.postId)"> {{post.title}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container  matColumnDef="typeId.type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Type </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.typeId.type}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="statusId.status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Status </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.statusId.status}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="postDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Date </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.postDate | date: "medium"}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+  </div>
 </div>
 </div>
 
