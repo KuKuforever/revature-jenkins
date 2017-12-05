@@ -4,14 +4,17 @@
 
 <div class="container col-md-10 col-md-offset-1 transparent-bgd" *ngIf="post" style="overflow: auto;">
   <div class="row">
-    <div class="col-xs-4 item-photo">
-      <img  id="imgView" class="img-responsive img-rounded" (click)="viewImg()" style="max-width:100%;"
+    <div class="col-xs-5 item-photo">
+      <br>
+      <img  id="imgView" class="img-responsive img-rounded img-thumbnail" (click)="viewImg()" style="max-width:100%;"
            src="{{post.imgUrl}}" />
       <br>
       <br>
+      <div class="map-container">
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
+      </div>
 
     </div>
     <div class="col-xs-6 col-xs-offset-1" style="border:0px solid gray">

@@ -1,8 +1,9 @@
 <app-nav-bar></app-nav-bar>
-<h4 align="center">Buying Goods</h4>
-<legend class="col-sm-12"></legend>
+
 
 <div class="container col-sm-12 transparent-bgd">
+  <h4 align="center" style="font-family: 'Comic Sans MS'">Buying Goods</h4>
+  <legend class="col-sm-12"></legend>
 <div class="container col-sm-2">
   <li style="list-style-type: none;">
     <ul class="btn btn-primary" (click)="newBuyPost()">Post Yours!</ul>
@@ -48,7 +49,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef mat-sort-header > Title </mat-header-cell>
-        <mat-cell class="btn-link" *matCellDef="let post"  (click)="viewPost(post.postId)"> {{post.title}} </mat-cell>
+        <mat-cell class="btn-link clickable-link" *matCellDef="let post"  (click)="viewPost(post.postId)"> {{post.title}} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
