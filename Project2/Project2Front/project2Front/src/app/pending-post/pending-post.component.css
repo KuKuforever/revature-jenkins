@@ -1,0 +1,14 @@
+#bgr {
+  background-color: white;
+  padding-bottom: 1%;
+}
+
+#transparent-bgd{
+  background:rgba(255,255,255,0.8);
+  padding-bottom: 2%;
+  margin-bottom: 5%;
+  border-radius: 5px;
+}
+.clickable-link:hover{
+  cursor: pointer;
+}

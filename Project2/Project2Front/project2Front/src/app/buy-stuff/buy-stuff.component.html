@@ -1,0 +1,82 @@
+<app-nav-bar></app-nav-bar>
+
+
+<div class="container col-sm-12 transparent-bgd">
+  <h4 align="center" style="font-family: 'Comic Sans MS'">Buying Goods</h4>
+  <legend class="col-sm-12"></legend>
+<div class="container col-sm-2">
+  <li style="list-style-type: none;">
+    <ul class="btn btn-primary" (click)="newBuyPost()">Post Yours!</ul>
+  </li>
+</div>
+
+<div class="container col-md-10 pull-right">
+  <!--<table id="want-post-table" class="table table-striped">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Wanted By</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Post Date</th>
+    </tr>
+    </thead>
+    <tbody id="want-post-tbody" >
+    <tr *ngFor="let wantPost of wantPosts">
+      <td class="btn" style="text-decoration: underline; color: blue;" (click)="viewPost(wantPost.postId)">{{wantPost.title}}</td>
+      <td>{{wantPost.postEmail}}</td>
+      <td>{{wantPost.typeId.type}}</td>
+      <td>{{wantPost.statusId.status}}</td>
+      <td>{{wantPost.postDate | date: "medium"}}</td>
+    </tr>
+    </tbody>
+  </table>-->
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="container col-md-12">
+    <mat-table #table="matSort" [dataSource]="dataSource1" matSort>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="postId" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Post ID </mat-header-cell>
+        <mat-cell *matCellDef="let post"  > {{post.postId}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Title </mat-header-cell>
+        <mat-cell class="btn-link clickable-link" *matCellDef="let post"  (click)="viewPost(post.postId)"> {{post.title}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container  matColumnDef="typeId.type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Type </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.typeId.type}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="statusId.status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Status </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.statusId.status}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="postDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Date </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.postDate | date: "medium"}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+  </div>
+</div>
+</div>

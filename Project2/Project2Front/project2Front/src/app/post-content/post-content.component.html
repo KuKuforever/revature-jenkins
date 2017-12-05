@@ -1,0 +1,61 @@
+<app-nav-bar></app-nav-bar>
+
+
+
+<div class="container col-md-10 col-md-offset-1 transparent-bgd" *ngIf="post" style="overflow: auto;">
+  <div class="row">
+    <div class="col-xs-5 item-photo">
+      <br>
+      <img  id="imgView" class="img-responsive img-rounded img-thumbnail" (click)="viewImg()" style="max-width:100%;"
+           src="{{post.imgUrl}}" />
+      <br>
+      <br>
+      <div class="map-container">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+      </div>
+
+    </div>
+    <div class="col-xs-6 col-xs-offset-1" style="border:0px solid gray">
+      <h3>{{post.title}}</h3>
+      <br>
+      <label>Post Type:</label>
+      <p>{{post.typeId.type}}</p>
+      <label>Location:</label>
+      <p>{{post.city}} , {{post.state}}, {{post.country}}</p>
+      <label>Zip Code:</label>
+      <p>{{post.zip}}</p>
+      <label>Email:</label>
+      <p>{{post.postEmail}}</p>
+      <label>Date Posted:</label>
+      <p>{{post.postDate | date: "medium"}}</p>
+      <fieldset>
+        <label>Description:</label>
+        <p>{{post.description}}</p>
+      </fieldset>
+      <br>
+      <div class="container-fluid" *ngIf="(pending && admin)">
+        <button class="btn btn-success col-md-3 " (click)="approve()">Approve</button>
+        <button class="btn btn-warning col-md-2 col-md-offset-1" (click)="deny()">Deny</button>
+      </div>
+      <div id="post-action" class="container-fluid" *ngIf="(active)">
+        <button type="button" class="btn btn-primary centered" (click)="update()" style="margin-right: 24px" *ngIf="(pending)">Update</button>
+        <button type="button" class="btn btn-danger centered" (click)="close()" *ngIf="(owner || admin)">Close the Post</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- The Modal -->
+<div id="imgModal" class="modal">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg">
+  <div id="caption"></div>
+</div>
+
+
+
+
+
+

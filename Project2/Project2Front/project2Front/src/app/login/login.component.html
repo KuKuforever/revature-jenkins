@@ -1,0 +1,32 @@
+
+<div class="container">
+  <div class="row vertical-offset-100">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">User Login</h3>
+        </div>
+        <div class="panel-body">
+          <form accept-charset="UTF-8" class="form-group" [formGroup]="form" (ngSubmit)="login()" novalidate>
+            <fieldset>
+              <div class="form-group">
+                <input class="form-control"  formControlName="verifyEmail" placeholder="Email" name="email" [(ngModel)]="email" type="email" email="true">
+              </div>
+              <div class="alert" align="center" *ngIf="!form.controls['verifyEmail'].valid && form.controls['verifyEmail'].touched"
+                   style="background: lightcyan ">This has to be a valid email address</div>
+              <div class="form-group">
+                <input class="form-control" formControlName="verifyPassword" placeholder="Password" name="password" [(ngModel)]="password" type="password">
+              </div>
+              <div class="alert" align="center" *ngIf="!form.controls['verifyPassword'].valid && form.controls['verifyPassword'].touched"
+                   style="background: lightcyan ">This is required </div>
+              <input class="btn btn-primary btn-block" type="submit" value="Login" [disabled]="!form.valid">
+              <div  *ngIf = "display" class="text-danger" >{{err}}</div>
+            </fieldset>
+          </form>
+          <br>
+          <a align="right" (click)="register()" >New User? Click here for registration </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

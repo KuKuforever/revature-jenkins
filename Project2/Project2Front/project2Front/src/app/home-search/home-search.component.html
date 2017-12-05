@@ -1,0 +1,84 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container col-md-12 transparent-bgd">
+  <h4 style="text-align: center">Checkout What's Available Online!</h4>
+  <br>
+  <div class="container col-md-3">
+    <h4 style="padding-top: 4%">Filters: </h4><br>
+
+    <div class="row form-inline">
+      <label class="col-md-1">City: </label>
+      <input type="text" class="form-control col-md-2 col-md-offset-1" name="cityFilter" placeholder="city" [(ngModel)]="city" >
+    </div>
+
+    <div class="row form-inline">
+      <label class="col-md-1">State: </label>
+      <input type="text" class="form-control col-md-2 col-md-offset-1" name="stateFilter" placeholder="state" [(ngModel)]="state" >
+    </div>
+    <div class="row form-inline">
+      <label class="col-md-1">Zip: </label>
+      <input type="text" class="form-control col-md-2 col-md-offset-1" name="zipFilter" placeholder="zip" [(ngModel)]="zip">
+    </div>
+
+
+  </div>
+
+  <div class="container col-md-9" style="margin-bottom: 2%"><!--
+    <div class="row" style="padding-top: 1%">
+      <div class="input-group col-md-6 col-md-offset-1" >
+        <select id="post-type-select" class="form-control col-md-2" ([ngModel])="filterType"  (change)="getValue($event)" required>
+          <option value="All" selected="selected">All</option>
+          <option value="1">Sale</option>
+          <option value="2">Want</option>
+        </select>
+        <input type="text" class="form-control col-md-6 col-md-offset-1" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button class="btn btn-search " type="button"  (click)="search()"><i class="fa fa-search fa-fw"></i> Search</button>
+        </span>
+      </div>
+    </div>-->
+
+    <div class="row" style="padding-top: 1%">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="input-group">
+            <div class="input-group-btn search-panel">
+              <select id="post-type-select" class="btn btn-default" ([ngModel])="filterType"  (change)="getValue($event)" required>
+                <option value="All" selected="selected">All</option>
+                <option value="1">Sale</option>
+                <option value="2">Want</option>
+              </select>
+
+            </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">
+            <input type="text" class="form-control" name="title" [(ngModel)]="filterTitle" placeholder="Search Title...">
+            <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 2%">
+      <mat-grid-list cols="4" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let post of posts | filterBy: ['city']: city |  filterBy: ['state']: state | filterBy: ['zip']: zip | paginate: {itemsPerPage:16, currentPage: p} ">
+          <div class="container col-md-12">
+              <div class="row img-container text-center" style="padding: 2%;">
+                <img src="{{post.imgUrl}}" alt="Image Unavailable"  height="100%" class="img-thumbnail img-responsive post-img ">
+              </div>
+            <div class="row title-container text-center">
+              <span class="link clickable-link" (click)="viewPost(post.postId)">{{post.title}}</span>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <div class="row">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+  </div>
+</div>
+
+

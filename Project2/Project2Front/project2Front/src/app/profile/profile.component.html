@@ -1,0 +1,51 @@
+<app-nav-bar></app-nav-bar>
+
+
+<legend class="col-sm-12"></legend>
+
+
+<div class="container col-md-4 col-md-offset-4" style="padding-bottom: 2%; margin-bottom: 5%">
+  <!--<table class="table table-striped">
+    <tr>
+      <th>Nickname</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    <tr *ngIf="user">
+      <th>{{user.username}}</th>
+      <th>{{user.email}}</th>
+      <th>{{user.phone}}</th>
+    </tr>
+  </table>-->
+  <div class="panel panel-default">
+    <div class="panel-heading">  <h4 >User Profile</h4>
+        <button class="btn btn-primary" (click)="update()">Update Profile</button>
+    </div>
+    <div class="panel-body">
+
+      <div class="box box-info">
+
+        <div class="box-body">
+          <div class="col-sm-6">
+            <div  align="center"> <img src="../../assets/img/default-profile-img.png" id="profile-image1" class="img-circle img-responsive">
+            </div>
+
+            <br>
+
+            <!-- /input-group -->
+          </div>
+          <div class="col-sm-6" *ngIf="user">
+            <label>User Name: </label><h4 style="color:#00b1b1;">{{user.username}}</h4>
+            <label>Email: </label> <h5>{{user.email}}</h5>
+            <label>Phone: </label> <h5>{{user.phone}}</h5>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

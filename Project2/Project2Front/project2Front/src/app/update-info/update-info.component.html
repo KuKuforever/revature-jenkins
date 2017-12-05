@@ -1,0 +1,26 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container" *ngIf="user">
+  <div class="col-md-6 col-md-offset-3 transparent-bgd">
+    <div class="form-area">
+      <form role="form">
+        <br style="clear:both">
+        <h3 style="margin-bottom: 25px; text-align: center;">Update Personal Info</h3>
+        <div class="form-group col-md-7 col-md-offset-3" >
+          <label>New Username:</label>
+          <input type="text" class="form-control"  name="nickname" [(ngModel)]="nickname" placeholder="{{user.username}}" required>
+        </div>
+
+        <div class="form-group col-md-7 col-md-offset-3">
+          <label>New Mobile Phone:</label>
+          <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="{{user.phone}}" required>
+        </div>
+
+
+        <button type="button" (click)="submit()" name="submit" class="btn btn-primary col-md-2 col-md-offset-4">Update</button>
+
+        <button type="button" (click)="cancel()" name="submit" class="btn btn-primary col-md-2 col-md-offset-1">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

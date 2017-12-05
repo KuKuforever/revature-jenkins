@@ -1,0 +1,52 @@
+<app-nav-bar></app-nav-bar>
+<div align="center">
+  <marquee
+    font-family="Century Gothic"
+    direction="left"
+    loop="100"
+    scrollamount="5"
+    scrolldelay="1"
+    behavior="alternate"
+    width="50%"
+    bgcolor="lightblue"
+  >
+    Welcome to the FleaMarket! Check out our newest post!
+  </marquee>
+</div>
+
+<div class="container col-md-12 transparent-bgd">
+  <div class="row">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <a href="#">
+          <img src="https://static.boredpanda.com/blog/wp-content/uploads/2016/01/bear-dogs-310__605.jpg" class="img-responsive img-box img-thumbnail">
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-9">
+        <div class="list-group">
+          <div class="list-group-item">
+            <div class="row-picture">
+              <a (click)="viewSeller()" title="author">
+              </a>
+            </div>
+            <div class="row-content">
+              <div class="list-group-item-heading">
+                <a href="#" title="sintret">
+                  <small>{{seller}}</small>
+                </a>
+              </div>
+              <small>
+                <i class="glyphicon glyphicon-time"></i> Date posted <a>@seller</a>
+                <br>
+                <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">google map button here </a></span>
+              </small>
+            </div>
+          </div>
+        </div>
+        <h4><a href="#">View Details</a></h4>
+        <p>Product intro goes here</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
