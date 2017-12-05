@@ -34,7 +34,7 @@
 
           <div class="form-group col-lg-6 col-lg-offset-3">
 
-            <a align="right" (click)="login()" >Already have an account? Click here to login </a>
+            <a align="right" class="clickable-link" (click)="login()" >Already have an account? Click here to login </a>
             <div class="container">
               <input type="submit" class="btn btn-primary col-lg-offset-3" [disabled]="!form.valid" value="Register">
               <div  *ngIf = "display" class="text-danger" >{{err}}</div>
