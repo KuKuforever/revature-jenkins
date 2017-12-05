@@ -43,6 +43,10 @@ public class AccountService {
                 || account.getUsername() == null) {
             throw new Exception("invalid data, can not register");
         }
+        else if(accountDao.findByEmail(account.getEmail()) != null)
+        {
+            throw new Exception("Email Alreay Exist");
+        }
 
         accountDao.save(account);
 
