@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -22,8 +22,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       verifyNickName: [null, Validators.required],
       verifyEmail: [null, Validators.required],
-      verifyPassword: [null, Validators.compose([Validators.required, Validators.minLength(8)])],
-      verifyPhone: [null]
+      verifyPassword: [null, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
 
@@ -50,4 +49,9 @@ export class RegisterComponent implements OnInit {
     this.router.navigate([('')]);
   }
 
+  private passwordValidator () {
+    if (this.password === this.phone) {
+      return true;
+    }else { return false;}
+  }
 }
