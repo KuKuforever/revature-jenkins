@@ -4,3 +4,6 @@
 
 #pad {
 }
+.clickable-link:hover{
+  cursor:pointer;
+}

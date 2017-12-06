@@ -26,6 +26,13 @@
                  style="background: lightcyan ">Password need to be minimum of 8 characters</div>
           </div>
 
+          <div class="form-group col-lg-6 col-lg-offset-3">
+            <label> Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" [(ngModel)]="secondPassword" name="secondPassword">
+            <div class="alert" align="center" *ngIf="form.get('verifyPassword').value != form.get('confirmPassword').value && form.get('confirmPassword').value != null "
+                 style="background: lightcyan ">Password mismatch </div>
+          </div>
+
 
           <div class="form-group col-lg-6 col-lg-offset-3">
             <label>Mobile Phone</label>
@@ -34,7 +41,7 @@
 
           <div class="form-group col-lg-6 col-lg-offset-3">
 
-            <a align="right" (click)="login()" >Already have an account? Click here to login </a>
+            <a align="right" class="clickable-link" (click)="login()" >Already have an account? Click here to login </a>
             <div class="container">
               <input type="submit" class="btn btn-primary col-lg-offset-3" [disabled]="!form.valid" value="Register">
               <div  *ngIf = "display" class="text-danger" >{{err}}</div>
